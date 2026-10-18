@@ -1,0 +1,522 @@
+
+<!-- ============================================= -->
+<!-- PRSOCIETY RULES                               -->
+<!-- ============================================= -->
+
+<group name="prsociety">
+ 
+  <rule id="110001" level="0">
+    <if_sid>86600</if_sid>
+    <field name="app_service">prsociety</field>
+    <description>Base rule for PRSociety events</description>
+  </rule>
+
+  <rule id="110002" level="3">
+    <if_sid>110001</if_sid>
+    <field name="auth-status">SUCCESS</field>
+    <description>PRSociety: Successful login - $(username) from IP $(src_ip)</description>
+    <group>authentication_success</group>
+  </rule>
+
+  <rule id="110003" level="5">
+    <if_sid>110001</if_sid>
+    <field name="auth-status">WRONG_PASSWORD</field>
+    <description>PRSociety: Wrong password attempt - user: $(username) from IP $(src_ip)</description>
+    <group>authentication_failed</group>
+  </rule>
+
+  <rule id="110004" level="5">
+    <if_sid>110001</if_sid>
+    <field name="auth-status">USER_NOT_FOUND</field>
+    <description>PRSociety: User not found attempt - user: $(username) from IP $(src_ip)</description>
+    <group>authentication_failed,user_enumeration</group>
+  </rule>
+
+  <rule id="110005" level="7">
+    <if_sid>110001</if_sid>
+    <field name="auth-status">RATE_LIMITED</field>
+    <description>PRSociety: Rate limit triggered - 3+ failed attempts for user $(username) from IP $(src_ip)</description>
+    <group>authentication_failed,rate_limited</group>
+  </rule>
+
+  <rule id="110006" level="9">
+    <if_sid>110001</if_sid>
+    <field name="auth-status">BRUTE_FORCE_ATTEMPT</field>
+    <description>PRSociety: BRUTE_FORCE_ATTEMPT - IP $(src_ip) had multiple rate limit events in 60 seconds</description>
+    <group>authentication_failed,bruteforce</group>
+  </rule>
+
+  <rule id="110007" level="10">
+    <if_sid>110001</if_sid>
+    <field name="auth-status">CRITICAL</field>
+    <description>PRSociety: CRITICAL - IP $(src_ip) has exceeded 10 rate limit events - Ongoing brute force attack</description>
+    <group>authentication_failed,bruteforce,critical</group>
+  </rule>
+
+  <rule id="110008" level="12">
+    <if_sid>110001</if_sid>
+    <field name="auth-status">DISTRIBUTED_ATTACK</field>
+    <description>PRSociety: DISTRIBUTED_ATTACK - Large scale attack detected from multiple IPs</description>
+    <group>authentication_failed,bruteforce,ddos,distributed_attack</group>
+  </rule>
+
+  <rule id="110009" level="13">
+    <if_sid>110001</if_sid>
+    <field name="auth-status">CRITICAL</field>
+    <field name="pattern_detected">critical</field>
+    <description>PRSociety: CRITICAL - Multiple attack waves from IP $(src_ip) - 3+ brute force patterns detected</description>
+    <group>authentication_failed,bruteforce,critical,multiple_waves</group>
+  </rule>
+
+  <rule id="110010" level="3">
+    <if_sid>110001</if_sid>
+    <field name="auth-status">LOGOUT</field>
+    <description>PRSociety: User $(username) logged out</description>
+    <group>session</group>
+  </rule>
+
+  <rule id="110014" level="4">
+    <if_sid>110001</if_sid>
+    <field name="auth-status">SESSION_RESTORE</field>
+    <description>PRSociety: Session restored for user $(username) from IP $(src_ip)</description>
+    <group>authentication_success</group>
+  </rule>
+
+</group>
+
+<!-- ============================================= -->
+<!-- MAILCOW RULES                                 -->
+<!-- ============================================= -->
+
+<group name="Mailcow">
+
+
+ 
+  <rule id="120001" level="0">\
+    <decoded_as>json</decoded_as>\
+    <field name="sender">\.+</field>\
+    <description>Mailcow: log detected</description>\
+  </rule>
+  <rule id="120002" level="4">
+    <if_sid>120001</if_sid>
+    <field name="sender" type="pcre2">@(?!pghconnect\.local)</field>
+    <field name="receiver" type="pcre2">@pghconnect\.local</field>
+    <description>Mailcow: External email received - From: $(sender) To: $(receiver)</description>
+  </rule>
+
+  <rule id="120010" level="10">
+    <if_sid>120001</if_sid>
+    <field name="subject" type="pcre2">(?i)(urgent|immediate action|verify your account|account suspended|security alert|unauthorized login|suspicious activity|reactivate|deactivate|locked|compromised)</field>
+    <description>Mailcow - Phishing: Urgent/action required subject line - $(subject)</description>
+  </rule>
+
+  <rule id="120011" level="10">
+    <if_sid>120001</if_sid>
+    <field name="subject" type="pcre2">(?i)(password|passphrase|credential|login|signin|verify your identity|reset your|change your|update your)</field>
+    <description>Mailcow - Phishing: Password/credential related subject - $(subject)</description>
+  </rule>
+
+  <rule id="120012" level="10">
+    <if_sid>120001</if_sid>
+    <field name="subject" type="pcre2">(?i)(invoice|payment|bill|refund|transaction|bank|paypal|credit card|debit card|visa|mastercard|amazon|apple|google|microsoft)</field>
+    <description>Mailcow - Phishing: Financial/brand impersonation subject - $(subject)</description>
+  </rule>
+
+  <rule id="120013" level="8">
+    <if_sid>120001</if_sid>
+    <field name="sender" type="pcre2">(?i)(paypal|amazon|apple|microsoft|dhl|fedex|ups|bank|chase|wellsfargo|citi)\.(?!com|org|net)</field>
+    <description>Mailcow - Phishing: Suspicious sender domain spoofing - $(sender)</description>
+  </rule>
+
+  <rule id="120014" level="7">
+    <if_sid>120001</if_sid>
+    <field name="sender" type="pcre2">^[^@]+$</field>
+    <description>Mailcow - Phishing: Invalid sender format (missing domain) - $(sender)</description>
+  </rule>
+
+  <rule id="120015" level="4">
+    <if_sid>120001</if_sid>
+    <field name="sender" type="pcre2">@pghconnect\.local</field>
+    <field name="receiver" type="pcre2">@pghconnect\.local</field>
+    <description>Mailcow - Phishing: Internal to internal email - $(sender) -> $(receiver)</description>
+  </rule>
+
+  <rule id="120017" level="9">
+    <if_sid>120001</if_sid>
+    <field name="body" type="pcre2">(?i)(click here|verify now|confirm your account|login to|sign in to|update your information|https?://bit\.ly|https?://tinyurl|https?://shorturl|http://(?!s))</field>
+    <description>Mailcow - Phishing: Suspicious body content (links/action words) detected</description>
+  </rule>
+
+  <rule id="120018" level="10">
+    <if_sid>120001</if_sid>
+    <field name="body" type="pcre2">https?://[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}</field>
+    <description>Mailcow - Phishing: Email contains IP address URL (suspicious)</description>
+  </rule>
+
+  <rule id="120019" level="6">
+    <if_sid>120001</if_sid>
+    <field name="body" type="pcre2">(https?://[^\s]+).*\1</field>
+    <description>Mailcow - Suspicious: Email contains multiple URLs</description>
+  </rule>
+
+  <rule id="120020" level="10">
+    <if_sid>120001</if_sid>
+    <field name="body" type="pcre2">(?i)(ssn|social security|date of birth|driver.?s license|mother.?s maiden|credit card|bank account|routing number|password|verify your identity)</field>
+    <description>Mailcow - Phishing: Request for personal/sensitive information detected</description>
+  </rule>
+
+  <rule id="120021" level="8">
+    <if_sid>120001</if_sid>
+    <field name="body" type="pcre2">(?i)(attached|attachment|see attached|view attached|download|invoice\.pdf|document\.pdf|report\.zip)</field>
+    <description>Mailcow - Suspicious: Email mentions attachment (potential malware)</description>
+  </rule>
+
+</group>
+
+<!-- ============================================= -->
+<!-- SUSPICIOUS COMMANDS DETECTION (CDB List Based) -->
+<!-- ============================================= -->
+
+<group name="prsociety,log,commands,suspicious">
+
+  <rule id="110050" level="0">
+    <if_sid>80792</if_sid>
+    <description>Base rule for command monitoring</description>
+  </rule>
+
+  <rule id="110051" level="6">
+    <if_sid>110050</if_sid>
+    <list field="audit.command" lookup="match_key_value" check_value="yellow">etc/lists/suspicious-programs</list>
+    <description>PRSociety: LOW - Suspicious command executed: $(audit.exe) by user $(audit.user)</description>
+    <group>suspicious_command,yellow_severity</group>
+    <mitre>
+      <id>T1059</id>
+    </mitre>
+  </rule>
+
+</group>
+
+<!-- ============================================= -->
+<!-- OVERRIDE BUILT-IN PYTHON RULE TO LEVEL 7      -->
+<!-- ============================================= -->
+
+<group name="override_python,">
+
+  <rule id="92600" level="7" overwrite="yes">
+    <if_sid>80792</if_sid>
+    <match>python</match>
+    <description>Python script executed - $(audit.exe)</description>
+    <mitre>
+      <id>T1059.006</id>
+    </mitre>
+    <group>python_execution,</group>
+  </rule>
+
+</group>
+
+<!-- ============================================= -->
+<!-- LINUX AUDIT DETECTION RULES                   -->
+<!-- ============================================= -->
+
+<group name="linux_audit_detection,">
+
+  <rule id="112001" level="10">
+    <if_sid>92600</if_sid>
+    <field name="audit.execve.a1" type="pcre2">(?i)bloodhound</field>
+    <description>BloodHound AD Discovery executed - User $(audit.user)</description>
+    <mitre>
+      <id>T1087</id>
+    </mitre>
+  </rule>
+
+  <rule id="112002" level="12">
+    <if_sid>92600</if_sid>
+    <field name="audit.execve.a1" type="pcre2">(?i)GetUserSPNs|GetNPUsers|secretsdump</field>
+    <description>Kerberoasting/DCSync tool detected - User $(audit.user)</description>
+    <mitre>
+      <id>T1558</id>
+    </mitre>
+  </rule>
+
+</group>
+
+<!-- ============================================= -->
+<!-- WINDOWS AD ENUMERATION DETECTION              -->
+<!-- ============================================= -->
+
+<group name="active_directory,enumeration,discovery,">
+
+  <rule id="110400" level="0">
+    <if_group>windows</if_group>
+    <field name="win.system.channel">^Security$</field>
+    <description>Base rule for AD Enumeration events</description>
+  </rule>
+
+  <rule id="110401" level="8">
+    <if_sid>110400</if_sid>
+    <field name="win.system.eventID">^4799$</field>
+    <description>AD: Local group enumeration - User $(win.eventdata.subjectUserName) enumerated $(win.eventdata.targetUserName)</description>
+    <mitre>
+      <id>T1069</id>
+    </mitre>
+    <group>group_enumeration,discovery,</group>
+  </rule>
+
+  <rule id="110402" level="12">
+    <if_sid>110400</if_sid>
+    <field name="win.system.eventID">^4799$</field>
+    <field name="win.eventdata.targetUserName">^Administrators$</field>
+    <description>AD: CRITICAL - User $(win.eventdata.subjectUserName) enumerated the Administrators group</description>
+    <mitre>
+      <id>T1069</id>
+    </mitre>
+    <group>group_enumeration,discovery,critical,</group>
+  </rule>
+
+</group>
+
+<!-- ============================================= -->
+<!-- WINDOWS KERBEROS & AUTHENTICATION             -->
+<!-- ============================================= -->
+
+<group name="active_directory,kerberos,authentication,">
+
+  <rule id="110100" level="0">
+    <if_group>windows</if_group>
+    <field name="win.system.channel">^Security$</field>
+    <description>Base rule for Active Directory Security events</description>
+  </rule>
+
+  <rule id="110101" level="5">
+    <if_sid>110100</if_sid>
+    <field name="win.system.eventID">^4768$</field>
+    <field name="win.eventdata.Status">^0x0$</field>
+    <description>AD: Kerberos TGT requested for user $(win.eventdata.targetUserName)</description>
+    <mitre>
+      <id>T1558</id>
+    </mitre>
+    <group>authentication_success,</group>
+  </rule>
+
+  <rule id="110102" level="5">
+    <if_sid>110100</if_sid>
+    <field name="win.system.eventID">^4769$</field>
+    <field name="win.eventdata.status">^0x0$</field>
+    <description>AD: Kerberos service ticket requested - User: $(win.eventdata.targetUserName)</description>
+    <mitre>
+      <id>T1558</id>
+    </mitre>
+    <group>authentication_success,</group>
+  </rule>
+
+  <rule id="110103" level="7">
+    <if_sid>110100</if_sid>
+    <field name="win.system.eventID">^4768$</field>
+    <field name="win.eventdata.Status" negate="yes">^0x0$</field>
+    <description>AD: FAILED Kerberos TGT request - User: $(win.eventdata.targetUserName)</description>
+    <mitre>
+      <id>T1558</id>
+    </mitre>
+    <group>authentication_failed,</group>
+  </rule>
+
+  <rule id="110104" level="8">
+    <if_sid>110100</if_sid>
+    <field name="win.system.eventID">^4740$</field>
+    <description>AD: User account locked out - $(win.eventdata.targetUserName)</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>account_lockout,</group>
+  </rule>
+
+  <rule id="110105" level="6">
+    <if_sid>110100</if_sid>
+    <field name="win.system.eventID">^4672$</field>
+    <description>AD: Admin privileges assigned to $(win.eventdata.subjectUserName)</description>
+    <mitre>
+      <id>T1078</id>
+    </mitre>
+    <group>privilege_escalation,admin_logon,</group>
+  </rule>
+
+  <rule id="110106" level="4">
+    <if_sid>110100</if_sid>
+    <field name="win.system.eventID">^4624$</field>
+    <description>AD: User logon - $(win.eventdata.targetUserName) from IP $(win.eventdata.ipAddress)</description>
+    <group>authentication_success,logon,</group>
+  </rule>
+
+</group>
+
+<!-- ============================================= -->
+<!-- ACTIVE DIRECTORY - ACCOUNT CREATION/DELETION  -->
+<!-- ============================================= -->
+
+<group name="active_directory,account_management,">
+
+  <rule id="110200" level="0">
+    <if_sid>60000</if_sid>
+    <field name="win.system.channel">^Security$</field>
+    <description>Base rule for AD Account Management</description>
+  </rule>
+
+  <rule id="110201" level="7">
+    <if_sid>110200</if_sid>
+    <field name="win.system.eventID">^4720$</field>
+    <description>AD: New user account created - $(win.eventdata.targetUserName)</description>
+    <mitre>
+      <id>T1136</id>
+    </mitre>
+    <group>account_creation,</group>
+  </rule>
+
+  <rule id="110202" level="7">
+    <if_sid>110200</if_sid>
+    <field name="win.system.eventID">^4726$</field>
+    <description>AD: User account deleted - $(win.eventdata.targetUserName)</description>
+    <group>account_deletion,</group>
+  </rule>
+
+  <rule id="110203" level="6">
+    <if_sid>110200</if_sid>
+    <field name="win.system.eventID">^4722$</field>
+    <description>AD: User account enabled - $(win.eventdata.targetUserName)</description>
+    <group>account_enabled,</group>
+  </rule>
+
+  <rule id="110204" level="6">
+    <if_sid>110200</if_sid>
+    <field name="win.system.eventID">^4725$</field>
+    <description>AD: User account disabled - $(win.eventdata.targetUserName)</description>
+    <group>account_disabled,</group>
+  </rule>
+
+</group>
+
+<!-- ============================================= -->
+<!-- KERBEROS BRUTE FORCE ATTACKS (4771)           -->
+<!-- ============================================= -->
+
+<group name="active_directory,kerberos_failure,bruteforce,">
+
+  <rule id="110300" level="0">
+    <if_sid>60000</if_sid>
+    <field name="win.system.eventID">^4771$</field>
+    <description>Base rule for Kerberos pre-authentication failures</description>
+  </rule>
+
+  <rule id="110301" level="12" frequency="5" timeframe="30" ignore="10">
+    <if_matched_sid>110300</if_matched_sid>
+    <same_source_ip />
+    <description>AD: KERBEROS BRUTE FORCE - Multiple failed authentications from IP $(win.eventdata.ipAddress)</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>kerberos_bruteforce,active_attack,</group>
+  </rule>
+
+</group>
+
+<!-- ============================================= -->
+<!-- AD ATTACK DETECTION - LINUX (Auditd)          -->
+<!-- ============================================= -->
+
+<group name="ad_attacks,linux,audit,">
+
+  <!-- Kerberoasting detection (GetUserSPNs.py) -->
+  <rule id="110500" level="12">
+    <if_sid>92600</if_sid>
+    <field name="audit.execve.a1" type="pcre2">(?i)GetUserSPNs</field>
+    <description>Kerberoasting attack detected - GetUserSPNs.py executed by $(audit.user)</description>
+    <mitre>
+      <id>T1558</id>
+      <id>T1558.003</id>
+    </mitre>
+  </rule>
+
+  <!-- AS-REP Roasting detection (GetNPUsers.py) -->
+  <rule id="110501" level="12">
+    <if_sid>92600</if_sid>
+    <field name="audit.execve.a1" type="pcre2">(?i)GetNPUsers</field>
+    <description>AS-REP Roasting attack detected - GetNPUsers.py executed by $(audit.user)</description>
+    <mitre>
+      <id>T1558</id>
+      <id>T1558.004</id>
+    </mitre>
+  </rule>
+
+  <!-- DCSync / Secretsdump detection -->
+  <rule id="110502" level="15">
+    <if_sid>92600</if_sid>
+    <field name="audit.execve.a1" type="pcre2">(?i)secretsdump|dcsync</field>
+    <description>DCSync/Credential dumping detected - $(audit.execve.a1) executed by $(audit.user)</description>
+    <mitre>
+      <id>T1003</id>
+      <id>T1003.006</id>
+    </mitre>
+  </rule>
+
+  <!-- Lateral Movement tools (psexec, wmiexec, etc.) -->
+  <rule id="110503" level="13">
+    <if_sid>92600</if_sid>
+    <field name="audit.execve.a1" type="pcre2">(?i)psexec|wmiexec|atexec|smbexec</field>
+    <description>Lateral movement attack detected - $(audit.execve.a1) executed by $(audit.user)</description>
+    <mitre>
+      <id>T1021</id>
+    </mitre>
+  </rule>
+
+  <!-- Golden/Silver Ticket tools -->
+  <rule id="110504" level="15">
+    <if_sid>92600</if_sid>
+    <field name="audit.execve.a1" type="pcre2">(?i)ticketer|golden_ticket|kerberos::golden</field>
+    <description>Golden/Silver Ticket attack detected - $(audit.execve.a1) executed by $(audit.user)</description>
+    <mitre>
+      <id>T1558</id>
+      <id>T1558.001</id>
+    </mitre>
+  </rule>
+
+  <!-- Impacket general detection -->
+  <rule id="110505" level="10">
+    <if_sid>92600</if_sid>
+    <field name="audit.execve.a1" type="pcre2">(?i)impacket</field>
+    <description>Impacket tool executed - $(audit.execve.a1) by $(audit.user)</description>
+    <mitre>
+      <id>T1059</id>
+    </mitre>
+  </rule>
+
+  <!-- CrackMapExec detection -->
+  <rule id="110506" level="10">
+    <if_sid>92600</if_sid>
+    <field name="audit.execve.a1" type="pcre2">(?i)crackmapexec|cme</field>
+    <description>CrackMapExec tool executed - $(audit.execve.a1) by $(audit.user)</description>
+    <mitre>
+      <id>T1046</id>
+    </mitre>
+  </rule>
+
+  <!-- Rubeus detection -->
+  <rule id="110507" level="12">
+    <if_sid>92600</if_sid>
+    <field name="audit.execve.a1" type="pcre2">(?i)Rubeus</field>
+    <description>Rubeus Kerberos attack tool detected - executed by $(audit.user)</description>
+    <mitre>
+      <id>T1558</id>
+    </mitre>
+  </rule>
+
+  <!-- Mimikatz detection -->
+  <rule id="110508" level="15">
+    <if_sid>92600</if_sid>
+    <field name="audit.execve.a1" type="pcre2">(?i)mimikatz</field>
+    <description>Mimikatz detected - $(audit.execve.a1) executed by $(audit.user)</description>
+    <mitre>
+      <id>T1003</id>
+      <id>T1548</id>
+    </mitre>
+  </rule>
+
+</group>
