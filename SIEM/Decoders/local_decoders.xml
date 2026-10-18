@@ -1,0 +1,11 @@
+<decoder name="prsociety">
+  <program_name>json</program_name>
+  <prematch>^{"app_service":"prsociety"</prematch>
+</decoder>
+
+<decoder name="audit-bloodhound">
+  <parent>auditd</parent>
+  <prematch>type=EXECVE</prematch>
+  <regex offset="after_prematch">a1="(\S+)"</regex>
+  <order>audit.arg1</order>
+</decoder>
