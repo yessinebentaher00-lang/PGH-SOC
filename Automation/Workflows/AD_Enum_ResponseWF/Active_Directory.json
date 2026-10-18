@@ -1,0 +1,2697 @@
+{
+  "name": "Active_Directory",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "AD",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -4672,
+        -96
+      ],
+      "id": "f476b0b5-092b-4043-8e8e-d0ec1181ebd2",
+      "name": "Webhook",
+      "webhookId": "3eaae675-7a05-444c-9e1d-f44585336d1a",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "resource": "case",
+        "caseFields": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "flag": true,
+            "title": "={{ $('Webhook').item.json.body.alert_type }} - {{ $('Webhook').item.json.body.timestamp }}",
+            "severity": 3,
+            "tags": "Enumeration",
+            "tlp": 3,
+            "pap": 2,
+            "status": "New",
+            "assignee": "analyst2@pgh.local",
+            "tasks": "={{ $json.tasks }}",
+            "sharingParameters": "={{ $json.sharingParameters }}",
+            "description": "={{ $json.description }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "displayName": "Title",
+              "id": "title",
+              "type": "string",
+              "removed": false,
+              "required": true,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Description",
+              "id": "description",
+              "type": "string",
+              "removed": false,
+              "required": true,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Severity (Severity of information)",
+              "id": "severity",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Low",
+                  "value": 1
+                },
+                {
+                  "name": "Medium",
+                  "value": 2
+                },
+                {
+                  "name": "High",
+                  "value": 3
+                },
+                {
+                  "name": "Critical",
+                  "value": 4
+                }
+              ],
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Start Date",
+              "id": "startDate",
+              "type": "dateTime",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "End Date",
+              "id": "endDate",
+              "type": "dateTime",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Tags",
+              "id": "tags",
+              "type": "string",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Flag",
+              "id": "flag",
+              "type": "boolean",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "TLP (Confidentiality of information)",
+              "id": "tlp",
+              "type": "options",
+              "options": [
+                {
+                  "name": "White",
+                  "value": 0
+                },
+                {
+                  "name": "Green",
+                  "value": 1
+                },
+                {
+                  "name": "Amber",
+                  "value": 2
+                },
+                {
+                  "name": "Red",
+                  "value": 3
+                }
+              ],
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "PAP (Level of exposure of information)",
+              "id": "pap",
+              "type": "options",
+              "options": [
+                {
+                  "name": "White",
+                  "value": 0
+                },
+                {
+                  "name": "Green",
+                  "value": 1
+                },
+                {
+                  "name": "Amber",
+                  "value": 2
+                },
+                {
+                  "name": "Red",
+                  "value": 3
+                }
+              ],
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Summary",
+              "id": "summary",
+              "type": "string",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Status",
+              "id": "status",
+              "type": "options",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "options": [
+                {
+                  "name": "Duplicated",
+                  "value": "Duplicated",
+                  "description": "Stage: Closed"
+                },
+                {
+                  "name": "FalsePositive",
+                  "value": "FalsePositive",
+                  "description": "Stage: Closed"
+                },
+                {
+                  "name": "Indeterminate",
+                  "value": "Indeterminate",
+                  "description": "Stage: Closed"
+                },
+                {
+                  "name": "InProgress",
+                  "value": "InProgress",
+                  "description": "Stage: InProgress"
+                },
+                {
+                  "name": "New",
+                  "value": "New",
+                  "description": "Stage: New"
+                },
+                {
+                  "name": "Other",
+                  "value": "Other",
+                  "description": "Stage: Closed"
+                },
+                {
+                  "name": "TruePositive",
+                  "value": "TruePositive",
+                  "description": "Stage: Closed"
+                }
+              ]
+            },
+            {
+              "displayName": "Assignee",
+              "id": "assignee",
+              "type": "options",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "options": [
+                {
+                  "name": "analyst",
+                  "value": "analyst2@pgh.local"
+                }
+              ]
+            },
+            {
+              "displayName": "Case Template",
+              "id": "caseTemplate",
+              "type": "options",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "options": []
+            },
+            {
+              "displayName": "Tasks",
+              "id": "tasks",
+              "type": "array",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Sharing Parameters",
+              "id": "sharingParameters",
+              "type": "array",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Observable Rule",
+              "id": "observableRule",
+              "type": "string",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.theHiveProject",
+      "typeVersion": 1,
+      "position": [
+        -3584,
+        -96
+      ],
+      "id": "45f893e2-2a74-4d02-8bb6-0027bf5d5f17",
+      "name": "Create a case",
+      "credentials": {
+        "theHiveProjectApi": {
+          "id": "oumzXgMBNwa5gwuN",
+          "name": "The Hive 5 account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get data from webhook\nconst fullLogRaw = $('Webhook').first().json.body.full_log;\nconst data = $('Webhook').first().json.body;\n\n// =============================================\n// STEP 1: Replace literal \\r\\n with actual line breaks\n// =============================================\nconst cleanLog = fullLogRaw.replace(/\\\\r\\\\n/g, '\\n');\n\n// =============================================\n// STEP 2: Remove the JSON garbage after the event\n// =============================================\nconst jsonStartIndex = cleanLog.indexOf('\"},\"eventdata\":');\nlet finalLog = cleanLog;\nif (jsonStartIndex !== -1) {\n  finalLog = cleanLog.substring(0, jsonStartIndex);\n}\n\n// =============================================\n// STEP 3: Extract values using simple regex on clean lines\n// =============================================\n\n// Extract Username\nlet username = \"unknown\";\nconst usernameMatch = finalLog.match(/Account Name:\\s*(\\S+)/);\nif (usernameMatch) username = usernameMatch[1];\n\n// Extract Domain\nlet domain = \"unknown\";\nconst domainMatch = finalLog.match(/Account Domain:\\s*(\\S+)/);\nif (domainMatch) domain = domainMatch[1];\n\n// Extract Group Name\nlet group = \"unknown\";\nconst groupMatch = finalLog.match(/Group Name:\\s*(.+?)(?:\\n|$)/);\nif (groupMatch) group = groupMatch[1].trim();\n\n// Extract Subject SID\nlet subjectSid = \"unknown\";\nconst subjectSidMatch = finalLog.match(/Security ID:\\s*(\\S+)/);\nif (subjectSidMatch) subjectSid = subjectSidMatch[1];\n\n// Extract Target SID\nlet targetSid = \"unknown\";\nconst targetSidMatch = finalLog.match(/Target SID:\\s*(\\S+)/);\nif (targetSidMatch) {\n  targetSid = targetSidMatch[1];\n} else {\n  // Fallback to JSON extraction\n  const jsonMatch = fullLogRaw.match(/\"targetSid\":\"([^\"]+)\"/);\n  if (jsonMatch) targetSid = jsonMatch[1];\n}\n\n// Extract Logon ID\nlet logonId = \"unknown\";\nconst logonIdMatch = finalLog.match(/Logon ID:\\s*(\\S+)/);\nif (logonIdMatch) logonId = logonIdMatch[1];\n\n// Extract Computer\nlet computer = \"unknown\";\nconst computerMatch = finalLog.match(/computer:\\s*(\\S+)/i);\nif (computerMatch) computer = computerMatch[1];\n\n// Extract Event ID\nlet eventId = \"4799\";\nconst eventIdMatch = finalLog.match(/Event ID:\\s*(\\d+)/i);\nif (eventIdMatch) eventId = eventIdMatch[1];\n\n// IP to Computer mapping\nconst agentIp = data.agent_ip || \"\";\nconst ipToComputerMap = {\n  \"192.168.77.10\": \"PGHMNG\",\n  \"192.168.20.4\": \"MARIA$\",\n  \"192.168.20.5\": \"JOHN$\"\n};\nif (computer === \"unknown\" && agentIp) {\n  computer = ipToComputerMap[agentIp] || agentIp;\n}\n\n// =============================================\n// DEBUG - Check extracted values\n// =============================================\nconsole.log(\"=== CLEAN EXTRACTED VALUES ===\");\nconsole.log(\"Username:\", username);\nconsole.log(\"Domain:\", domain);\nconsole.log(\"Group:\", group);\nconsole.log(\"Subject SID:\", subjectSid);\nconsole.log(\"Target SID:\", targetSid);\nconsole.log(\"Computer:\", computer);\nconsole.log(\"Logon ID:\", logonId);\nconsole.log(\"==============================\");\n\n// =============================================\n// TASKS\n// =============================================\nconst tasks = [\n  {\n    title: \"Pre/Post Activities Collection\",\n    description: \"Collecting same user activities from Wazuh\"\n  },\n  {\n    title: \"Emulator threat actor instant blocking\",\n    description: \" Block $input.first().json.body.enumerator_name 's VM via ip \"\n  },\n  {\n    title: \"Report Generation\",\n    description: \"Generate incident report from collected data\"\n  }\n];\n\n// =============================================\n// OBSERVABLES\n// =============================================\nconst observables = [\n  {\n    dataType: \"ip\",\n    data: agentIp || \"unknown\",\n    message: \"Source Agent IP Address\",\n    tlp: 2\n  },\n  {\n    dataType: \"hostname\",\n    data: computer,\n    message: \"Computer Name\",\n    tlp: 2\n  },\n  {\n    dataType: \"user\",\n    data: username,\n    message: \"User Account\",\n    tlp: 2\n  },\n  {\n    dataType: \"other\",\n    data: group,\n    message: \"Group Enumerated\",\n    tlp: 2\n  },\n  {\n    dataType: \"other\",\n    data: subjectSid,\n    message: \"Subject SID\",\n    tlp: 2\n  },\n  {\n    dataType: \"other\",\n    data: targetSid,\n    message: \"Target SID\",\n    tlp: 2\n  }\n];\n\n// =============================================\n// SHARING PARAMETERS\n// =============================================\nconst sharingParameters = [\n  {\n    key: \"tlp\",\n    value: \"AMBER\",\n    organisation: \"PGHSOC\"\n  },\n  {\n    key: \"pap\",\n    value: \"AMBER\",\n    organisation: \"PGHSOC\"\n  },\n  {\n    key: \"tags\",\n    value: [\"Enumeration\", \"AD Enumeration\", \"EventID_4799\"],\n    organisation: \"PGHSOC\"\n  }\n];\n\n// =============================================\n// CLEAN CASE DESCRIPTION - Using extracted values only\n// =============================================\nconst timestamp = new Date().toISOString();\n\nconst caseDescription = `## Incident Summary\n\nA security-enabled local group membership enumeration was detected (Event ID ${eventId}).\n\n---\n\n## Event Details\n\n| Field | Value |\n|-------|-------|\n| Detection Time | ${timestamp} |\n| Computer | ${computer} |\n| Source IP | ${agentIp || \"unknown\"} |\n| User | ${username} |\n| Domain | ${domain} |\n| Logon ID | ${logonId} |\n| Group Enumerated | ${group} |\n| Severity | HIGH |\n| Rule ID | 110401 |\n\n---\n\n## Security Identifiers (SIDs)\n\n| Field | Value |\n|-------|-------|\n| Subject SID | ${subjectSid} |\n| Target SID | ${targetSid} |\n\n---\n\n## What Happened\n\nUser ${username} from domain ${domain} enumerated the ${group} group on computer ${computer} (${agentIp}).\n\nThis activity indicates reconnaissance behavior that often precedes lateral movement or privilege escalation attacks.\n\n---\n\n## Recommended Actions\n\n| Priority | Action |\n|----------|--------|\n| High | Investigate user ${username} for additional suspicious activities |\n| High | Review authentication logs for ${username} |\n| Medium | Check for recent privilege escalations |\n| Medium | Correlate with other AD enumeration alerts |\n\n---\n\n*Automatically created by n8n incident response workflow*`;\n\n// =============================================\n// OUTPUT\n// =============================================\nreturn [{\n  json: {\n    title: `AD Enumeration - ${username} enumerated ${group} on ${computer}`,\n    tags: [\"Enumeration\", \"AD Enumeration\", \"EventID_4799\"],\n    description: caseDescription,\n    severity: 2,\n    tasks: tasks,\n    observables: observables,\n    sharingParameters: sharingParameters\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3776,
+        -96
+      ],
+      "id": "9826bc37-4520-4a83-bff2-4a60db8759b2",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "resource": "observable",
+        "id": {
+          "__rl": true,
+          "value": "={{ $json._id }}",
+          "mode": "id"
+        },
+        "dataType": "ip",
+        "data": "={{ $('Webhook').item.json.body.enumerator_ip }}",
+        "observableFields": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ioc": true,
+            "sighted": true,
+            "ignoreSimilarity": false,
+            "message": "Emulator_IP",
+            "tags": "IP",
+            "tlp": 2
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "displayName": "Start Date",
+              "id": "startDate",
+              "type": "dateTime",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Description",
+              "id": "message",
+              "type": "string",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Tags",
+              "id": "tags",
+              "type": "string",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "TLP (Confidentiality of information)",
+              "id": "tlp",
+              "type": "options",
+              "options": [
+                {
+                  "name": "White",
+                  "value": 0
+                },
+                {
+                  "name": "Green",
+                  "value": 1
+                },
+                {
+                  "name": "Amber",
+                  "value": 2
+                },
+                {
+                  "name": "Red",
+                  "value": 3
+                }
+              ],
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "PAP (Level of exposure of information)",
+              "id": "pap",
+              "type": "options",
+              "options": [
+                {
+                  "name": "White",
+                  "value": 0
+                },
+                {
+                  "name": "Green",
+                  "value": 1
+                },
+                {
+                  "name": "Amber",
+                  "value": 2
+                },
+                {
+                  "name": "Red",
+                  "value": 3
+                }
+              ],
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "IOC",
+              "id": "ioc",
+              "type": "boolean",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Sighted",
+              "id": "sighted",
+              "type": "boolean",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Sighted At",
+              "id": "sightedAt",
+              "type": "dateTime",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Ignore Similarity",
+              "id": "ignoreSimilarity",
+              "type": "boolean",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Is Zip",
+              "id": "isZip",
+              "type": "boolean",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Zip Password",
+              "id": "zipPassword",
+              "type": "string",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.theHiveProject",
+      "typeVersion": 1,
+      "position": [
+        -3376,
+        -288
+      ],
+      "id": "794dcc3a-bb44-4c98-b980-7370dde39076",
+      "name": "Create an observable",
+      "credentials": {
+        "theHiveProjectApi": {
+          "id": "oumzXgMBNwa5gwuN",
+          "name": "The Hive 5 account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "observable",
+        "id": {
+          "__rl": true,
+          "value": "={{ $json._id }}",
+          "mode": "id"
+        },
+        "dataType": "hostname",
+        "data": "={{ $('Webhook').item.json.body.enumerator_name }}",
+        "observableFields": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ioc": true,
+            "sighted": true,
+            "ignoreSimilarity": false,
+            "message": "Emulator_IP",
+            "tags": "IP",
+            "tlp": 2
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "displayName": "Start Date",
+              "id": "startDate",
+              "type": "dateTime",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Description",
+              "id": "message",
+              "type": "string",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Tags",
+              "id": "tags",
+              "type": "string",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "TLP (Confidentiality of information)",
+              "id": "tlp",
+              "type": "options",
+              "options": [
+                {
+                  "name": "White",
+                  "value": 0
+                },
+                {
+                  "name": "Green",
+                  "value": 1
+                },
+                {
+                  "name": "Amber",
+                  "value": 2
+                },
+                {
+                  "name": "Red",
+                  "value": 3
+                }
+              ],
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "PAP (Level of exposure of information)",
+              "id": "pap",
+              "type": "options",
+              "options": [
+                {
+                  "name": "White",
+                  "value": 0
+                },
+                {
+                  "name": "Green",
+                  "value": 1
+                },
+                {
+                  "name": "Amber",
+                  "value": 2
+                },
+                {
+                  "name": "Red",
+                  "value": 3
+                }
+              ],
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "IOC",
+              "id": "ioc",
+              "type": "boolean",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Sighted",
+              "id": "sighted",
+              "type": "boolean",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Sighted At",
+              "id": "sightedAt",
+              "type": "dateTime",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Ignore Similarity",
+              "id": "ignoreSimilarity",
+              "type": "boolean",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Is Zip",
+              "id": "isZip",
+              "type": "boolean",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Zip Password",
+              "id": "zipPassword",
+              "type": "string",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.theHiveProject",
+      "typeVersion": 1,
+      "position": [
+        -3376,
+        64
+      ],
+      "id": "deb04a6d-d35f-452a-810c-a6341a103261",
+      "name": "Create an observable1",
+      "credentials": {
+        "theHiveProjectApi": {
+          "id": "oumzXgMBNwa5gwuN",
+          "name": "The Hive 5 account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -3136,
+        -96
+      ],
+      "id": "de50ef9e-966d-40d6-88c3-3670039b1bfd",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "n8n_Automation"
+        },
+        "text": "=🚨 CRITICAL INCIDENT 🚨  Host:{{ $('Webhook').item.json.body.enumerator_name }}_VM IP: {{ $('Webhook').item.json.body.enumerator_ip }} Risk: CRITICAL SLA: 15 minutes  Actions Taken: ✅ Host isolated ✅ IP blocked at firewall ✅ Case updated  Response Required IMMEDIATELY",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        -2144,
+        256
+      ],
+      "id": "cd2a30d9-fe56-4171-89ef-052e54ec0b33",
+      "name": "Send a message",
+      "webhookId": "c75dfa5d-8c78-4150-84d9-4408a182387f",
+      "credentials": {
+        "slackApi": {
+          "id": "znnZNdHuSIbTAUN4",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "command": "=pfctl -t AD_Emulators -T add  {{ $('Webhook').item.json.body.agent_ip }}"
+      },
+      "type": "n8n-nodes-base.ssh",
+      "typeVersion": 1,
+      "position": [
+        -1840,
+        256
+      ],
+      "id": "ece58a67-42ae-4f47-ac08-c09a56e75559",
+      "name": "Blocklist_Warn_IP_ADD",
+      "credentials": {
+        "sshPassword": {
+          "id": "kvOQC4O3QT4Zm3wI",
+          "name": "SSH Password account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "case",
+        "operation": "update",
+        "caseUpdateFields": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Create a case').item.json._id }}",
+            "severity": 1,
+            "status": "Indeterminate",
+            "title": "=Resolved- {{ $('Webhook').item.json.body.alert_type }}-{{ $('Webhook').item.json.body.timestamp }}",
+            "summary": "=Malicious IP blocked  {{ $('Webhook').item.json.body.enumerator_ip }} - {{ $('Webhook').item.json.body.enumerator_name }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "displayName": "ID",
+              "id": "id",
+              "required": false,
+              "display": true,
+              "type": "string",
+              "defaultMatch": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "displayName": "Title",
+              "id": "title",
+              "type": "string",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Description",
+              "id": "description",
+              "type": "string",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Severity (Severity of information)",
+              "id": "severity",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Low",
+                  "value": 1
+                },
+                {
+                  "name": "Medium",
+                  "value": 2
+                },
+                {
+                  "name": "High",
+                  "value": 3
+                },
+                {
+                  "name": "Critical",
+                  "value": 4
+                }
+              ],
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Start Date",
+              "id": "startDate",
+              "type": "dateTime",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "End Date",
+              "id": "endDate",
+              "type": "dateTime",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Tags",
+              "id": "tags",
+              "type": "string",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Flag",
+              "id": "flag",
+              "type": "boolean",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "TLP (Confidentiality of information)",
+              "id": "tlp",
+              "type": "options",
+              "options": [
+                {
+                  "name": "White",
+                  "value": 0
+                },
+                {
+                  "name": "Green",
+                  "value": 1
+                },
+                {
+                  "name": "Amber",
+                  "value": 2
+                },
+                {
+                  "name": "Red",
+                  "value": 3
+                }
+              ],
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "PAP (Level of exposure of information)",
+              "id": "pap",
+              "type": "options",
+              "options": [
+                {
+                  "name": "White",
+                  "value": 0
+                },
+                {
+                  "name": "Green",
+                  "value": 1
+                },
+                {
+                  "name": "Amber",
+                  "value": 2
+                },
+                {
+                  "name": "Red",
+                  "value": 3
+                }
+              ],
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Summary",
+              "id": "summary",
+              "type": "string",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Status",
+              "id": "status",
+              "type": "options",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "options": [
+                {
+                  "name": "Duplicated",
+                  "value": "Duplicated",
+                  "description": "Stage: Closed"
+                },
+                {
+                  "name": "FalsePositive",
+                  "value": "FalsePositive",
+                  "description": "Stage: Closed"
+                },
+                {
+                  "name": "Indeterminate",
+                  "value": "Indeterminate",
+                  "description": "Stage: Closed"
+                },
+                {
+                  "name": "InProgress",
+                  "value": "InProgress",
+                  "description": "Stage: InProgress"
+                },
+                {
+                  "name": "New",
+                  "value": "New",
+                  "description": "Stage: New"
+                },
+                {
+                  "name": "Other",
+                  "value": "Other",
+                  "description": "Stage: Closed"
+                },
+                {
+                  "name": "TruePositive",
+                  "value": "TruePositive",
+                  "description": "Stage: Closed"
+                }
+              ]
+            },
+            {
+              "displayName": "Assignee",
+              "id": "assignee",
+              "type": "options",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "options": [
+                {
+                  "name": "analyst",
+                  "value": "analyst2@pgh.local"
+                }
+              ]
+            },
+            {
+              "displayName": "Impact Status",
+              "id": "impactStatus",
+              "type": "string",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Task Rule",
+              "id": "taskRule",
+              "type": "string",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": false
+            },
+            {
+              "displayName": "Observable Rule",
+              "id": "observableRule",
+              "type": "string",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": false
+            },
+            {
+              "displayName": "Add Tags",
+              "id": "addTags",
+              "type": "string",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": false
+            },
+            {
+              "displayName": "Remove Tags",
+              "id": "removeTags",
+              "type": "string",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.theHiveProject",
+      "typeVersion": 1,
+      "position": [
+        -2688,
+        256
+      ],
+      "id": "55954bdb-cd95-4be8-8f42-0b027a819597",
+      "name": "Critical_Alert",
+      "credentials": {
+        "theHiveProjectApi": {
+          "id": "oumzXgMBNwa5gwuN",
+          "name": "The Hive 5 account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "resource": "task",
+        "operation": "update",
+        "taskUpdateFields": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "flag": false,
+            "mandatory": false,
+            "title": "={{ $('Code in JavaScript').item.json.tasks[0].title }}",
+            "status": "=Completed"
+          },
+          "matchingColumns": [
+            "title"
+          ],
+          "schema": [
+            {
+              "displayName": "ID",
+              "id": "id",
+              "required": false,
+              "display": true,
+              "type": "string",
+              "defaultMatch": true,
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "displayName": "Title",
+              "id": "title",
+              "type": "string",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Description",
+              "id": "description",
+              "type": "string",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Group",
+              "id": "group",
+              "type": "string",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Status",
+              "id": "status",
+              "type": "stirng",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Flag",
+              "id": "flag",
+              "type": "boolean",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Start Date",
+              "id": "startDate",
+              "type": "dateTime",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Due Date",
+              "id": "dueDate",
+              "type": "dateTime",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "End Date",
+              "id": "endDate",
+              "type": "dateTime",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Assignee",
+              "id": "assignee",
+              "type": "options",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "options": [
+                {
+                  "name": "analyst",
+                  "value": "analyst2@pgh.local"
+                }
+              ]
+            },
+            {
+              "displayName": "Mandatory",
+              "id": "mandatory",
+              "type": "boolean",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Order",
+              "id": "order",
+              "type": "number",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.theHiveProject",
+      "typeVersion": 1,
+      "position": [
+        -2576,
+        -448
+      ],
+      "id": "575eb751-406b-4447-b9ab-1468c1ef45a0",
+      "name": "Update a task",
+      "credentials": {
+        "theHiveProjectApi": {
+          "id": "oumzXgMBNwa5gwuN",
+          "name": "The Hive 5 account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// =============================================\n// CODE NODE 1: Generate Prompt for DeepSeek - SUMMARIZE RESULTS\n// =============================================\n\n// Get data from your existing nodes\nlet wazuhAlerts = [];\nlet webhookData = {};\n\ntry {\n  // Handle different possible structures from Alerts_Content_Ext\n  const alertsContent = $('Deduplication').first().json;\n  \n  // Check if it's already an array\n  if (Array.isArray(alertsContent)) {\n    wazuhAlerts = alertsContent;\n  }\n  // Check if it has a 'hits' array\n  else if (alertsContent.hits && Array.isArray(alertsContent.hits)) {\n    wazuhAlerts = alertsContent.hits;\n  }\n  // Check if it has a 'hits.hits' structure (Elasticsearch format)\n  else if (alertsContent.hits && alertsContent.hits.hits && Array.isArray(alertsContent.hits.hits)) {\n    wazuhAlerts = alertsContent.hits.hits;\n  }\n  // Check if it has a 'data' array\n  else if (alertsContent.data && Array.isArray(alertsContent.data)) {\n    wazuhAlerts = alertsContent.data;\n  }\n  // Check if it has an 'alerts' array\n  else if (alertsContent.alerts && Array.isArray(alertsContent.alerts)) {\n    wazuhAlerts = alertsContent.alerts;\n  }\n  // If none of the above, try to convert object values to array\n  else if (typeof alertsContent === 'object' && alertsContent !== null) {\n    wazuhAlerts = Object.values(alertsContent).filter(v => Array.isArray(v))[0] || [];\n  }\n  \n  // Ensure it's an array\n  if (!Array.isArray(wazuhAlerts)) {\n    wazuhAlerts = [];\n  }\n  \n} catch(e) {\n  console.log(\"Error getting alerts:\", e.message);\n  wazuhAlerts = [];\n}\n\ntry {\n  webhookData = $('Webhook').first().json.body || {};\n} catch(e) {\n  webhookData = {};\n}\n\nconst fullLogRaw = webhookData.full_log || \"\";\n\n// =============================================\n// CLEAN AND EXTRACT DATA\n// =============================================\nlet cleanFullLog = fullLogRaw.replace(/\\\\r\\\\n/g, ' ');\ncleanFullLog = cleanFullLog.replace(/\\\\t/g, ' ');\ncleanFullLog = cleanFullLog.split('\"},\"eventdata\":')[0];\n\n// Extract key values\nlet username = \"unknown\";\nconst usernameMatch = cleanFullLog.match(/Account Name:\\s*(\\S+)/);\nif (usernameMatch) username = usernameMatch[1];\n\nlet group = \"unknown\";\nconst groupMatch = cleanFullLog.match(/Group Name:\\s*([^\\s]+(?:\\s+[^\\s]+)*?)(?=\\s+Group Domain:|$)/);\nif (groupMatch) group = groupMatch[1].trim();\n\nlet computer = \"unknown\";\nconst computerMatch = cleanFullLog.match(/computer:\\s*(\\S+)/i);\nif (computerMatch) computer = computerMatch[1];\n\nlet domain = \"unknown\";\nconst domainMatch = cleanFullLog.match(/Account Domain:\\s*(\\S+)/);\nif (domainMatch) domain = domainMatch[1];\n\nconst agentIp = webhookData.agent_ip || webhookData.src_ip || \"unknown\";\n\n// =============================================\n// EXTRACT FROM WAZUH ALERTS (SAFE LOOP)\n// =============================================\nconst commands = [];\nconst descriptions = [];\nconst timestamps = [];\nconst levels = [];\n\n// Safely iterate over wazuhAlerts\nif (Array.isArray(wazuhAlerts) && wazuhAlerts.length > 0) {\n  for (const alert of wazuhAlerts) {\n    try {\n      // Handle different alert structures\n      let source = {};\n      \n      if (alert._source) {\n        source = alert._source;\n      } else if (alert.source) {\n        source = alert.source;\n      } else {\n        source = alert;\n      }\n      \n      const content = alert.content || alert.full_log || source.full_log || JSON.stringify(source);\n      \n      // Extract command from exe field\n      const exeMatch = content.match(/exe=\"([^\"]+)\"/);\n      if (exeMatch) {\n        const cmd = exeMatch[1].split('/').pop();\n        if (cmd && !commands.includes(cmd)) commands.push(cmd);\n      }\n      \n      // Extract description\n      const desc = source.rule?.description || source.description || source.rule_description;\n      if (desc && !descriptions.includes(desc)) descriptions.push(desc);\n      \n      // Extract timestamp\n      if (source.timestamp) timestamps.push(source.timestamp);\n      \n      // Extract level\n      const level = source.rule?.level || source.level;\n      if (level) levels.push(parseInt(level));\n      \n    } catch(e) {\n      console.log(\"Error processing alert:\", e.message);\n    }\n  }\n}\n\nconst uniqueCommands = [...new Set(commands)].slice(0, 15);\nconst uniqueDescriptions = [...new Set(descriptions)].slice(0, 20);\nconst avgLevel = levels.length > 0 ? (levels.reduce((a,b) => a + b, 0) / levels.length).toFixed(1) : \"N/A\";\nconst timeRange = timestamps.length > 1 ? `${timestamps[0]} to ${timestamps[timestamps.length-1]}` : timestamps[0] || \"Single timestamp\";\n\n// =============================================\n// FALLBACK DESCRIPTIONS IF NONE FOUND\n// =============================================\nlet finalDescriptions = uniqueDescriptions;\nif (finalDescriptions.length === 0 && group !== \"unknown\") {\n  finalDescriptions = [`User ${username} enumerated the ${group} group on ${computer}`];\n}\n\n// =============================================\n// BUILD PROMPT FOR DEEPSEEK - SUMMARIZATION\n// =============================================\nconst promptSummary = `You are a cybersecurity incident analyst. Summarize the following security alerts.\n\n## INCIDENT CONTEXT\n\n| Field | Value |\n|-------|-------|\n| User | ${username} |\n| Target Group | ${group} |\n| Computer | ${computer} |\n| Domain | ${domain} |\n| Source IP | ${agentIp} |\n| Total Alerts | ${wazuhAlerts.length} |\n| Time Range | ${timeRange} |\n| Average Alert Level | ${avgLevel} |\n\n## ALERT DESCRIPTIONS\n\n${finalDescriptions.map((d, i) => `${i+1}. ${d}`).join('\\n') || \"No descriptions available\"}\n\n## COMMANDS EXECUTED\n\n${uniqueCommands.map((c, i) => `${i+1}. ${c}`).join('\\n') || \"No commands detected\"}\n\n## TASK\n\nProvide a comprehensive SUMMARY with these sections:\n\n### 1. EXECUTIVE SUMMARY\n(3-4 sentences explaining what happened, who did it, when, and what the risk is)\n\n### 2. KEY FINDINGS\n- Most critical alerts\n- Attack timeline\n- Suspicious patterns detected\n\n### 3. ATTACKER BEHAVIOR\n- What techniques were used\n- What phase of the kill chain\n- What was the likely objective\n\n### 4. RISK ASSESSMENT\n- Risk level (Critical/High/Medium/Low)\n- Impact if attack succeeds\n- Current containment status\n\n### 5. CONFIDENCE SCORE\n(0-100% with reasoning)\n\nKeep the response concise, professional, and actionable.`;\n\n// =============================================\n// DEBUG OUTPUT (remove in production)\n// =============================================\nconsole.log(\"=== DEBUG INFO ===\");\nconsole.log(\"wazuhAlerts type:\", typeof wazuhAlerts);\nconsole.log(\"Is array:\", Array.isArray(wazuhAlerts));\nconsole.log(\"Alerts count:\", wazuhAlerts.length);\nconsole.log(\"Descriptions found:\", finalDescriptions.length);\nconsole.log(\"Commands found:\", uniqueCommands.length);\nconsole.log(\"=================\");\n\n// =============================================\n// OUTPUT\n// =============================================\nreturn [{\n  json: {\n    prompt: promptSummary,\n    model: \"deepseek-r1:7b\",\n    temperature: 0.3,\n    max_tokens: 2000,\n    node_type: \"summarize_results\",\n    // Also pass metadata for debugging\n    debug_info: {\n      alerts_count: wazuhAlerts.length,\n      descriptions_count: finalDescriptions.length,\n      commands_count: uniqueCommands.length,\n      avg_level: avgLevel\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2400,
+        -736
+      ],
+      "id": "146e85be-df63-4fd3-bef6-2f6b37eff5c5",
+      "name": "Prompt_2_AI_Gen1"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"stream\": false,\n  \"options\": {\"temperature\": 0.3, \"num_predict\": 3000, \"thinking\": false, \"timeout\": 600000}\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2224,
+        -736
+      ],
+      "id": "11c8f100-c647-4c7a-9a5c-861fdade951d",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.77.254:4555/api/v2/firewall/rule",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"type\": \"block\",\n  \"floating\": true,\n  \"quick\": true,\n  \"ipprotocol\": \"inet\",\n  \"interface\": [\"lan\"],\n  \"protocol\": \"tcp/udp\",\n  \"source\": \"{{ $('Webhook').item.json.body.enumerator_ip }}\",\n  \"destination\": \"any\",\n  \"descr\": \"Blocked automatically by n8n for phishing attempt\"\n}",
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -2880,
+        256
+      ],
+      "id": "2b5fbe65-6737-40e9-8739-309c45e7e358",
+      "name": "Blocking_Malicious_IP",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "7okRSbwOWnVgK4uM",
+          "name": "Unnamed credential 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "alertFields": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "title": "={{ $json.body.alert_type }}-{{ $json.body.timestamp }}",
+            "type": "={{ $json.body.severity }}",
+            "source": "={{ $json.body.username }}",
+            "description": "={{ $json.body.rule_description }}",
+            "status": "New",
+            "sourceRef": "={{ $json.body.agent }}-{{ $json.body.timestamp }}",
+            "summary": "={{ $json.body.full_log }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "displayName": "Title",
+              "id": "title",
+              "type": "string",
+              "removed": false,
+              "required": true,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Description",
+              "id": "description",
+              "type": "string",
+              "removed": false,
+              "required": true,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Type",
+              "id": "type",
+              "type": "string",
+              "removed": false,
+              "required": true,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Source",
+              "id": "source",
+              "type": "string",
+              "removed": false,
+              "required": true,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Source Reference",
+              "id": "sourceRef",
+              "type": "string",
+              "removed": false,
+              "required": true,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "External Link",
+              "id": "externalLink",
+              "type": "string",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Severity (Severity of information)",
+              "id": "severity",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Low",
+                  "value": 1
+                },
+                {
+                  "name": "Medium",
+                  "value": 2
+                },
+                {
+                  "name": "High",
+                  "value": 3
+                },
+                {
+                  "name": "Critical",
+                  "value": 4
+                }
+              ],
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Date",
+              "id": "date",
+              "type": "dateTime",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Tags",
+              "id": "tags",
+              "type": "string",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Follow",
+              "id": "follow",
+              "type": "boolean",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Flag",
+              "id": "flag",
+              "type": "boolean",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "TLP (Confidentiality of information)",
+              "id": "tlp",
+              "type": "options",
+              "options": [
+                {
+                  "name": "White",
+                  "value": 0
+                },
+                {
+                  "name": "Green",
+                  "value": 1
+                },
+                {
+                  "name": "Amber",
+                  "value": 2
+                },
+                {
+                  "name": "Red",
+                  "value": 3
+                }
+              ],
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "PAP (Level of exposure of information)",
+              "id": "pap",
+              "type": "options",
+              "options": [
+                {
+                  "name": "White",
+                  "value": 0
+                },
+                {
+                  "name": "Green",
+                  "value": 1
+                },
+                {
+                  "name": "Amber",
+                  "value": 2
+                },
+                {
+                  "name": "Red",
+                  "value": 3
+                }
+              ],
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Summary",
+              "id": "summary",
+              "type": "string",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false
+            },
+            {
+              "displayName": "Status",
+              "id": "status",
+              "type": "options",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "options": [
+                {
+                  "name": "Duplicate",
+                  "value": "Duplicate",
+                  "description": "Stage: Closed"
+                },
+                {
+                  "name": "FalsePositive",
+                  "value": "FalsePositive",
+                  "description": "Stage: Closed"
+                },
+                {
+                  "name": "Ignored",
+                  "value": "Ignored",
+                  "description": "Stage: Closed"
+                },
+                {
+                  "name": "Imported",
+                  "value": "Imported",
+                  "description": "Stage: Imported"
+                },
+                {
+                  "name": "InProgress",
+                  "value": "InProgress",
+                  "description": "Stage: InProgress"
+                },
+                {
+                  "name": "New",
+                  "value": "New",
+                  "description": "Stage: New"
+                },
+                {
+                  "name": "Pending",
+                  "value": "Pending",
+                  "description": "Stage: InProgress"
+                }
+              ]
+            },
+            {
+              "displayName": "Case Template",
+              "id": "caseTemplate",
+              "type": "options",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "options": []
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.theHiveProject",
+      "typeVersion": 1,
+      "position": [
+        -4448,
+        -96
+      ],
+      "id": "3df69237-61ac-46ab-9e41-3d6dab60f0ad",
+      "name": "Create an alert",
+      "credentials": {
+        "theHiveProjectApi": {
+          "id": "oumzXgMBNwa5gwuN",
+          "name": "The Hive 5 account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "task",
+        "operation": "update",
+        "taskUpdateFields": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "flag": false,
+            "mandatory": false,
+            "title": "={{ $('Code in JavaScript').item.json.tasks[1].title }}",
+            "status": "=Completed"
+          },
+          "matchingColumns": [
+            "title"
+          ],
+          "schema": [
+            {
+              "displayName": "ID",
+              "id": "id",
+              "required": false,
+              "display": true,
+              "type": "string",
+              "defaultMatch": true,
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "displayName": "Title",
+              "id": "title",
+              "type": "string",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Description",
+              "id": "description",
+              "type": "string",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Group",
+              "id": "group",
+              "type": "string",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Status",
+              "id": "status",
+              "type": "stirng",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Flag",
+              "id": "flag",
+              "type": "boolean",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Start Date",
+              "id": "startDate",
+              "type": "dateTime",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Due Date",
+              "id": "dueDate",
+              "type": "dateTime",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "End Date",
+              "id": "endDate",
+              "type": "dateTime",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Assignee",
+              "id": "assignee",
+              "type": "options",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "options": [
+                {
+                  "name": "analyst",
+                  "value": "analyst2@pgh.local"
+                }
+              ]
+            },
+            {
+              "displayName": "Mandatory",
+              "id": "mandatory",
+              "type": "boolean",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Order",
+              "id": "order",
+              "type": "number",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.theHiveProject",
+      "typeVersion": 1,
+      "position": [
+        -2432,
+        256
+      ],
+      "id": "88faa437-d31c-4e3f-a84f-fcd2b0e2f092",
+      "name": "Update a task1",
+      "credentials": {
+        "theHiveProjectApi": {
+          "id": "oumzXgMBNwa5gwuN",
+          "name": "The Hive 5 account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "task",
+        "operation": "update",
+        "taskUpdateFields": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "flag": false,
+            "mandatory": false,
+            "title": "={{ $('Code in JavaScript').item.json.tasks[2].title }}",
+            "status": "=Completed"
+          },
+          "matchingColumns": [
+            "title"
+          ],
+          "schema": [
+            {
+              "displayName": "ID",
+              "id": "id",
+              "required": false,
+              "display": true,
+              "type": "string",
+              "defaultMatch": true,
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "displayName": "Title",
+              "id": "title",
+              "type": "string",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Description",
+              "id": "description",
+              "type": "string",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Group",
+              "id": "group",
+              "type": "string",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Status",
+              "id": "status",
+              "type": "stirng",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Flag",
+              "id": "flag",
+              "type": "boolean",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Start Date",
+              "id": "startDate",
+              "type": "dateTime",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Due Date",
+              "id": "dueDate",
+              "type": "dateTime",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "End Date",
+              "id": "endDate",
+              "type": "dateTime",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Assignee",
+              "id": "assignee",
+              "type": "options",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "options": [
+                {
+                  "name": "analyst",
+                  "value": "analyst2@pgh.local"
+                }
+              ]
+            },
+            {
+              "displayName": "Mandatory",
+              "id": "mandatory",
+              "type": "boolean",
+              "removed": false,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "displayName": "Order",
+              "id": "order",
+              "type": "number",
+              "removed": true,
+              "required": false,
+              "display": true,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.theHiveProject",
+      "typeVersion": 1,
+      "position": [
+        -1616,
+        -448
+      ],
+      "id": "c2379eb0-6fbc-402a-a63d-6929c6d0520c",
+      "name": "Update a task2",
+      "credentials": {
+        "theHiveProjectApi": {
+          "id": "oumzXgMBNwa5gwuN",
+          "name": "The Hive 5 account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// =============================================\n// CODE NODE 4: Generate Complete Incident Report\n// WITH PROPER VARIABLE EXTRACTION\n// =============================================\n\n// =============================================\n// STEP 1: COLLECT RESULTS FROM ALL 3 DEEPSEEK NODES\n// =============================================\n\nlet summaryAnalysis = \"Analysis not available\";\nlet logAnalysis = \"Analysis not available\";\nlet mitigationAnalysis = \"Analysis not available\";\n\ntry {\n  const summaryResponse = $('DeepSeek_Summarize').first().json.response;\n  if (summaryResponse) summaryAnalysis = summaryResponse;\n} catch(e) {}\n\ntry {\n  const logResponse = $('DeepSeek_Log_Analysis').first().json.response;\n  if (logResponse) logAnalysis = logResponse;\n} catch(e) {}\n\ntry {\n  const mitigationResponse = $('DeepSeek_Mitigations').first().json.response;\n  if (mitigationResponse) mitigationAnalysis = mitigationResponse;\n} catch(e) {}\n\n// =============================================\n// STEP 2: CLEAN THE AI RESPONSES\n// =============================================\n\nfunction cleanAIResponse(response) {\n  if (typeof response !== 'string') {\n    response = JSON.stringify(response);\n  }\n  response = response.replace(/[\\s\\S]*?/g, '');\n  response = response.replace(/```html\\n?/g, '');\n  response = response.replace(/```json\\n?/g, '');\n  response = response.replace(/```\\n?/g, '');\n  response = response.replace(/Alright,[\\s\\S]*?(?=##|###|\\n\\n|$)/, '');\n  return response.trim();\n}\n\nconst cleanSummary = cleanAIResponse(summaryAnalysis);\nlet cleanLogAnalysis = cleanAIResponse(logAnalysis);\nconst cleanMitigation = cleanAIResponse(mitigationAnalysis);\n\n// =============================================\n// STEP 3: PARSE THE TABLE FROM LOG ANALYSIS\n// =============================================\n\nfunction parseMarkdownTable(markdown) {\n  const lines = markdown.split('\\n');\n  const tableLines = [];\n  let inTable = false;\n  \n  for (const line of lines) {\n    if (line.trim().startsWith('|') && line.includes('|')) {\n      inTable = true;\n      tableLines.push(line);\n    } else if (inTable && line.trim() === '') {\n      break;\n    } else if (inTable && !line.trim().startsWith('|')) {\n      if (line.trim().length > 0) break;\n    }\n  }\n  \n  if (tableLines.length < 3) return null;\n  \n  const headers = tableLines[0].split('|').filter(cell => cell.trim()).map(cell => cell.trim());\n  const rows = [];\n  for (let i = 2; i < tableLines.length; i++) {\n    const cells = tableLines[i].split('|').filter(cell => cell.trim());\n    if (cells.length >= headers.length) {\n      rows.push(cells.map(cell => cell.trim()));\n    }\n  }\n  \n  return { headers, rows };\n}\n\nfunction extractSection(content, sectionName) {\n  const regex = new RegExp(`### ${sectionName}[\\\\s\\\\S]*?(?=###|$)`, 'i');\n  const match = content.match(regex);\n  return match ? match[0] : null;\n}\n\nconst logTableData = parseMarkdownTable(cleanLogAnalysis);\nconst nextAttackSection = extractSection(cleanLogAnalysis, 'PART B: NEXT ATTACK PREDICTION');\nconst detectionGapsSection = extractSection(cleanLogAnalysis, 'PART C: DETECTION GAPS');\n\n// =============================================\n// STEP 4: EXTRACT RISK SCORE & CONFIDENCE SCORE\n// =============================================\n\nfunction extractScore(text, pattern) {\n  const regex = new RegExp(pattern, 'i');\n  const match = text.match(regex);\n  if (match) {\n    const numMatch = match[1].match(/\\d+(?:\\.\\d+)?/);\n    if (numMatch) return parseFloat(numMatch[0]);\n  }\n  return null;\n}\n\nlet riskScore = null;\nconst riskPatterns = [\n  /risk (?:level|score|rating)[:\\s]*(\\d+(?:\\.\\d+)?(?:\\/10)?)/i,\n  /risk[:\\s]*(\\d+(?:\\.\\d+)?)/i,\n  /severity[:\\s]*(\\d+(?:\\.\\d+)?(?:\\/10)?)/i\n];\n\nfor (const pattern of riskPatterns) {\n  riskScore = extractScore(cleanSummary, pattern);\n  if (riskScore) break;\n}\n\nif (!riskScore) {\n  const summaryLower = cleanSummary.toLowerCase();\n  if (summaryLower.includes(\"critical\")) riskScore = 9.5;\n  else if (summaryLower.includes(\"high\")) riskScore = 8.0;\n  else if (summaryLower.includes(\"medium\")) riskScore = 5.5;\n  else if (summaryLower.includes(\"low\")) riskScore = 2.5;\n  else riskScore = 5.0;\n}\n\nlet confidenceScore = null;\nconst confidencePatterns = [\n  /confidence(?:\\s+score)?[:\\s]*(\\d+(?:\\.\\d+)?)%/i,\n  /confidence[:\\s]*(\\d+(?:\\.\\d+)?)/i\n];\n\nfor (const pattern of confidencePatterns) {\n  confidenceScore = extractScore(cleanSummary, pattern);\n  if (confidenceScore) break;\n}\n\nif (!confidenceScore) confidenceScore = 75;\n\n// =============================================\n// STEP 5: DETERMINE RISK LEVEL\n// =============================================\nlet riskLevel = \"Medium\";\nif (riskScore >= 8.5) riskLevel = \"Critical\";\nelse if (riskScore >= 7.0) riskLevel = \"High\";\nelse if (riskScore >= 4.0) riskLevel = \"Medium\";\nelse riskLevel = \"Low\";\n\nlet verdict = \"Suspicious\";\nif (cleanSummary.toLowerCase().includes(\"malicious\")) verdict = \"Malicious\";\nelse if (cleanSummary.toLowerCase().includes(\"suspicious\")) verdict = \"Suspicious\";\n\n// =============================================\n// STEP 6: GET ORIGINAL DATA - FIXED: Extract ALL webhook values FIRST\n// =============================================\n\n// IMPORTANT: Extract all webhook values into variables BEFORE using them in HTML\nlet webhookData = {};\nlet wazuhAlerts = [];\n\ntry {\n  webhookData = $('Webhook').first().json.body || {};\n} catch(e) {\n  webhookData = {};\n}\n\n// Extract ALL needed values from webhook\nconst enumeratorIp = webhookData.enumerator_ip || webhookData.agent_ip || webhookData.src_ip || \"unknown\";\nconst enumeratorName = webhookData.enumerator_name || webhookData.username || \"unknown\";\nconst agentName = webhookData.agent || webhookData.agent_name || \"unknown\";\nconst fullLogRaw = webhookData.full_log || \"\";\n\n// Clean and extract from full_log\nlet cleanFullLog = fullLogRaw.replace(/\\\\r\\\\n/g, ' ');\ncleanFullLog = cleanFullLog.replace(/\\\\t/g, ' ');\ncleanFullLog = cleanFullLog.split('\"},\"eventdata\":')[0];\n\nlet username = \"unknown\";\nconst usernameMatch = cleanFullLog.match(/Account Name:\\s*(\\S+)/);\nif (usernameMatch) username = usernameMatch[1];\nif (username === \"unknown\" && enumeratorName !== \"unknown\") username = enumeratorName;\n\nlet group = \"unknown\";\nconst groupMatch = cleanFullLog.match(/Group Name:\\s*([^\\s]+(?:\\s+[^\\s]+)*?)(?=\\s+Group Domain:|$)/);\nif (groupMatch) group = groupMatch[1].trim();\n\nlet computer = \"unknown\";\nconst computerMatch = cleanFullLog.match(/computer:\\s*(\\S+)/i);\nif (computerMatch) computer = computerMatch[1];\nif (computer === \"unknown\" && agentName !== \"unknown\") computer = agentName;\n\nlet domain = \"unknown\";\nconst domainMatch = cleanFullLog.match(/Account Domain:\\s*(\\S+)/);\nif (domainMatch) domain = domainMatch[1];\n\nlet subjectSid = \"unknown\";\nconst subjectSidMatch = cleanFullLog.match(/Security ID:\\s*(\\S+)/);\nif (subjectSidMatch) subjectSid = subjectSidMatch[1];\n\nlet targetSid = \"unknown\";\nconst targetSidMatch = cleanFullLog.match(/Target SID:\\s*(\\S+)/);\nif (targetSidMatch) targetSid = targetSidMatch[1];\n\n// Get alerts count\ntry {\n  const alertsContent = $('Alerts_Content_Ext').first().json;\n  if (Array.isArray(alertsContent)) {\n    wazuhAlerts = alertsContent;\n  } else if (alertsContent.hits && Array.isArray(alertsContent.hits)) {\n    wazuhAlerts = alertsContent.hits;\n  } else if (alertsContent.hits && alertsContent.hits.hits) {\n    wazuhAlerts = alertsContent.hits.hits;\n  }\n} catch(e) {}\n\nconst alertCount = wazuhAlerts.length;\nconst timestamp = new Date().toISOString();\nconst caseId = `IR-${Date.now()}`;\n\n// MITRE Techniques\nconst techniques = [];\nif (cleanLogAnalysis.toLowerCase().includes(\"bloodhound\")) techniques.push(\"T1087 - Account Discovery\");\nif (cleanLogAnalysis.toLowerCase().includes(\"netstat\")) techniques.push(\"T1046 - Network Service Scanning\");\nif (cleanLogAnalysis.toLowerCase().includes(\"enumeration\")) techniques.push(\"T1069 - Permission Groups Discovery\");\nconst uniqueTechniques = [...new Set(techniques)];\nif (uniqueTechniques.length === 0) uniqueTechniques.push(\"T1069 - Permission Groups Discovery\");\n\n// =============================================\n// STEP 7: DEBUG - Check extracted values\n// =============================================\nconsole.log(\"=== EXTRACTED VALUES ===\");\nconsole.log(\"enumeratorIp:\", enumeratorIp);\nconsole.log(\"enumeratorName:\", enumeratorName);\nconsole.log(\"agentName:\", agentName);\nconsole.log(\"username:\", username);\nconsole.log(\"computer:\", computer);\nconsole.log(\"group:\", group);\nconsole.log(\"domain:\", domain);\nconsole.log(\"alertCount:\", alertCount);\nconsole.log(\"riskScore:\", riskScore);\nconsole.log(\"confidenceScore:\", confidenceScore);\nconsole.log(\"========================\");\n\n// =============================================\n// STEP 8: GENERATE HTML REPORT WITH PROPER VARIABLES\n// =============================================\n\nconst htmlReport = `<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Incident Report - ${username}</title>\n    <style>\n        * { margin: 0; padding: 0; box-sizing: border-box; }\n        body {\n            background: linear-gradient(135deg, #0a0e27 0%, #0f1235 100%);\n            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, monospace;\n            padding: 40px 20px;\n            color: #e0e0e0;\n            line-height: 1.5;\n        }\n        .container { max-width: 1400px; margin: 0 auto; }\n        .header {\n            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n            border-radius: 20px;\n            padding: 35px;\n            margin-bottom: 30px;\n            text-align: center;\n        }\n        .header h1 { font-size: 32px; margin-bottom: 10px; }\n        .case-id { font-size: 14px; opacity: 0.8; font-family: monospace; }\n        .risk-badge {\n            display: inline-block;\n            padding: 8px 20px;\n            border-radius: 40px;\n            font-size: 14px;\n            font-weight: bold;\n            margin-top: 15px;\n        }\n        .risk-critical { background: #ff4444; color: white; box-shadow: 0 0 15px rgba(255,68,68,0.3); }\n        .risk-high { background: #ff8800; color: white; }\n        .risk-medium { background: #ffcc00; color: #1a1a1a; }\n        .risk-low { background: #00cc88; color: #1a1a1a; }\n        .verdict-badge {\n            display: inline-block;\n            padding: 8px 20px;\n            border-radius: 40px;\n            font-size: 14px;\n            font-weight: bold;\n            margin-left: 12px;\n        }\n        .verdict-malicious { background: #ff4444; color: white; }\n        .verdict-suspicious { background: #ff8800; color: white; }\n        .card {\n            background: #1a1f3a;\n            border-radius: 16px;\n            padding: 28px;\n            margin-bottom: 28px;\n            border: 1px solid #2a2f4a;\n        }\n        .card h2 {\n            font-size: 22px;\n            margin-bottom: 20px;\n            padding-bottom: 12px;\n            border-bottom: 3px solid #667eea;\n            color: #a0a0ff;\n            display: inline-block;\n        }\n        .table-wrapper {\n            overflow-x: auto;\n            margin: 20px 0;\n            border-radius: 12px;\n        }\n        .alert-table {\n            width: 100%;\n            border-collapse: collapse;\n            font-size: 14px;\n        }\n        .alert-table th {\n            background: linear-gradient(135deg, #252a4a 0%, #2a2f5a 100%);\n            color: #c0c0ff;\n            padding: 14px 12px;\n            text-align: left;\n            font-weight: 600;\n        }\n        .alert-table td {\n            padding: 12px;\n            border-bottom: 1px solid #2a2f4a;\n            vertical-align: top;\n        }\n        .alert-table tr:hover { background: #252a4a; }\n        .mitre-tag-table {\n            display: inline-block;\n            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n            padding: 4px 12px;\n            border-radius: 20px;\n            font-size: 11px;\n            font-weight: bold;\n            color: white;\n        }\n        .alert-number {\n            display: inline-block;\n            width: 28px;\n            height: 28px;\n            background: #667eea;\n            border-radius: 50%;\n            text-align: center;\n            line-height: 28px;\n            font-weight: bold;\n            font-size: 14px;\n        }\n        .stats-grid {\n            display: grid;\n            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));\n            gap: 18px;\n            margin: 25px 0;\n        }\n        .stat-box {\n            background: #0d0f1a;\n            padding: 18px;\n            border-radius: 12px;\n            text-align: center;\n            border: 1px solid #2a2f4a;\n        }\n        .stat-number {\n            font-size: 36px;\n            font-weight: bold;\n            color: #667eea;\n        }\n        .stat-label { font-size: 12px; color: #888; margin-top: 6px; }\n        .prediction-card {\n            background: #0d0f1a;\n            border-radius: 12px;\n            padding: 20px;\n            margin: 15px 0;\n            border-left: 4px solid #ff8800;\n        }\n        .warning-box {\n            background: rgba(255, 68, 68, 0.1);\n            border-left: 4px solid #ff4444;\n            padding: 18px;\n            border-radius: 10px;\n            margin: 15px 0;\n        }\n        .success-box {\n            background: rgba(0, 204, 136, 0.1);\n            border-left: 4px solid #00cc88;\n            padding: 18px;\n            border-radius: 10px;\n            margin: 15px 0;\n        }\n        .score-grid {\n            display: grid;\n            grid-template-columns: repeat(2, 1fr);\n            gap: 20px;\n            margin: 20px 0;\n        }\n        .score-card {\n            background: #0d0f1a;\n            border-radius: 12px;\n            padding: 20px;\n            text-align: center;\n        }\n        .score-value {\n            font-size: 48px;\n            font-weight: bold;\n        }\n        .score-critical { color: #ff4444; }\n        .score-high { color: #ff8800; }\n        .score-medium { color: #ffcc00; }\n        .score-low { color: #00cc88; }\n        .mitre-tag {\n            display: inline-block;\n            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n            color: white;\n            padding: 6px 14px;\n            border-radius: 25px;\n            font-size: 12px;\n            margin: 5px 6px 0 0;\n        }\n        .ai-content {\n            background: #0d0f1a;\n            padding: 20px;\n            border-radius: 10px;\n            white-space: pre-wrap;\n            line-height: 1.6;\n            font-size: 14px;\n        }\n        .footer {\n            text-align: center;\n            padding: 25px;\n            font-size: 12px;\n            color: #666;\n            border-top: 1px solid #2a2f4a;\n            margin-top: 30px;\n        }\n        code {\n            background: #0d0f1a;\n            padding: 3px 8px;\n            border-radius: 6px;\n            font-family: monospace;\n            font-size: 12px;\n        }\n    </style>\n</head>\n<body>\n<div class=\"container\">\n    <div class=\"header\">\n        <h1>🚨 Incident Response Report</h1>\n        <div class=\"case-id\">Case ID: ${caseId} | Generated: ${timestamp}</div>\n        <div>\n            <span class=\"risk-badge risk-${riskLevel.toLowerCase()}\">RISK: ${riskLevel.toUpperCase()}</span>\n            <span class=\"verdict-badge verdict-${verdict.toLowerCase()}\">VERDICT: ${verdict.toUpperCase()}</span>\n        </div>\n    </div>\n\n    <div class=\"score-grid\">\n        <div class=\"score-card\">\n            <div class=\"score-value score-${riskLevel.toLowerCase()}\">${riskScore.toFixed(1)}<span style=\"font-size: 20px;\">/10</span></div>\n            <div class=\"stat-label\">Risk Score</div>\n        </div>\n        <div class=\"score-card\">\n            <div class=\"score-value\" style=\"color: #667eea;\">${confidenceScore}<span style=\"font-size: 20px;\">%</span></div>\n            <div class=\"stat-label\">Confidence Score</div>\n        </div>\n    </div>\n\n    <div class=\"stats-grid\">\n        <div class=\"stat-box\"><div class=\"stat-number\">${alertCount}</div><div class=\"stat-label\">Total Alerts</div></div>\n        <div class=\"stat-box\"><div class=\"stat-number\">${uniqueTechniques.length}</div><div class=\"stat-label\">MITRE Techniques</div></div>\n        <div class=\"stat-box\"><div class=\"stat-number\">${username}</div><div class=\"stat-label\">Infected User</div></div>\n        <div class=\"stat-box\"><div class=\"stat-number\">${computer}</div><div class=\"stat-label\">Target Host</div></div>\n    </div>\n\n    <div class=\"card\">\n        <h2>📋 Incident Details</h2>\n        <table>\n            <tr><th>Infected User Account</th><td>${username} (@${domain})</td></tr>\n            <tr><th>Target Computer</th><td>${computer}</td></tr>\n            <tr><th>Source IP (Threat Actor)</th><td><code>${enumeratorIp}</code></td></tr>\n            <tr><th>Group Enumerated</th><td><strong>${group}</strong></td></tr>\n            <tr><th>Subject SID</th><td><code>${subjectSid}</code></td></tr>\n            <tr><th>Target SID</th><td><code>${targetSid}</code></td></tr>\n        </table>\n    </div>\n\n    <div class=\"card\">\n        <h2>🤖 Executive Summary</h2>\n        <div class=\"ai-content\">${cleanSummary}</div>\n    </div>\n\n    <div class=\"card\">\n        <h2>🎯 MITRE ATT&CK Framework</h2>\n        <div>${uniqueTechniques.map(t => `<span class=\"mitre-tag\">${t}</span>`).join('')}</div>\n        <p style=\"margin-top: 15px;\"><strong>Tactics:</strong> Discovery, Reconnaissance, Execution, Privilege Escalation</p>\n    </div>\n\n    ${logTableData && logTableData.rows.length > 0 ? `\n    <div class=\"card\">\n        <h2>📊 Alert Analysis & MITRE Mapping</h2>\n        <div class=\"table-wrapper\">\n            <table class=\"alert-table\">\n                <thead><tr><th>#</th><th>Activity Summary</th><th>Suspicious Reason</th><th>MITRE Tactic</th></tr></thead>\n                <tbody>\n                    ${logTableData.rows.map((row, idx) => `\n                    <tr>\n                        <td><span class=\"alert-number\">${idx + 1}</span></td>\n                        <td><strong>${row[1] || row[0] || 'N/A'}</strong></td>\n                        <td>${row[2] || row[1] || 'N/A'}</td>\n                        <td><span class=\"mitre-tag-table\">${row[3] || row[2] || 'N/A'}</span></td>\n                    </tr>\n                    `).join('')}\n                </tbody>\n            </table>\n        </div>\n    </div>\n    ` : ''}\n\n    ${nextAttackSection ? `\n    <div class=\"card\">\n        <h2>🔮 Next Attack Prediction</h2>\n        <div class=\"prediction-card\">\n            ${nextAttackSection.replace(/### PART B: NEXT ATTACK PREDICTION/, '').split('\\n').map(line => {\n                if (line.match(/^\\d+\\./)) return `<div style=\"margin: 12px 0;\"><strong style=\"color: #ffcc88;\">🚨 ${line}</strong></div>`;\n                if (line.includes('Attack Path')) return `<div style=\"margin-top: 18px;\"><strong style=\"color: #ffcc88;\">📍 ${line}</strong></div>`;\n                if (line.includes('Time to Impact')) return `<div class=\"warning-box\" style=\"margin-top: 12px;\"><strong>⏰ ${line}</strong></div>`;\n                if (line.includes('Immediate Warnings')) return `<div class=\"warning-box\" style=\"margin-top: 12px;\"><strong>⚠️ ${line}</strong></div>`;\n                if (line.trim().startsWith('-')) return `<div style=\"margin-left: 20px; margin-top: 5px;\">• ${line.replace('-', '').trim()}</div>`;\n                if (line.trim().length > 0 && !line.includes('###')) return `<div style=\"margin-top: 8px;\">${line}</div>`;\n                return '';\n            }).join('\\n')}\n        </div>\n    </div>\n    ` : ''}\n\n    ${detectionGapsSection ? `\n    <div class=\"card\">\n        <h2>🔍 Detection Gaps & Improvements</h2>\n        <div class=\"success-box\">\n            ${detectionGapsSection.replace(/### PART C: DETECTION GAPS/, '').split('\\n').map(line => {\n                if (line.trim().startsWith('-')) return `<div style=\"margin: 8px 0;\">• ${line.replace('-', '').trim()}</div>`;\n                if (line.trim().length > 0 && !line.includes('###')) return `<div style=\"margin-top: 5px;\">${line}</div>`;\n                return '';\n            }).join('\\n')}\n        </div>\n    </div>\n    ` : ''}\n\n    <div class=\"card\">\n        <h2>🛡️ Mitigations & Solutions</h2>\n        <div class=\"ai-content\">${cleanMitigation.substring(0, 2500)}</div>\n    </div>\n\n    <div class=\"card\">\n        <h2>🔎 Observables (IOCs)</h2>\n        <table>\n            <tr><th>Type</th><th>Value</th></tr>\n            <tr><td>Threat Actor IP</td><td><code>${enumeratorIp}</code></td></tr>\n            <tr><td>Target Hostname</td><td><code>${computer}</code></td></tr>\n            <tr><td>Compromised Username</td><td><code>${username}</code></td></tr>\n            <tr><td>Domain</td><td><code>${domain}</code></td></tr>\n            <tr><td>Enumerated Group</td><td><code>${group}</code></td></tr>\n            <tr><td>Event ID</td><td><code>4799 (Group Enumeration)</code></td></tr>\n        </table>\n    </div>\n\n    <div class=\"card\">\n        <h2>⚡ Immediate Actions Required</h2>\n        <div class=\"warning-box\">\n            <strong>🚨 CRITICAL - Execute within 1 hour:</strong>\n            <ul style=\"margin-top: 15px; margin-left: 25px;\">\n                <li>Block IP <code>${enumeratorIp}</code> at perimeter firewall</li>\n                <li>Disable or reset credentials for user <code>${username}</code></li>\n                <li>Isolate host <code>${username}_VM</code> for forensic analysis</li>\n                <li>Review all authentication logs for <code>${username}</code></li>\n                <li>Check for lateral movement to other systems</li>\n            </ul>\n        </div>\n    </div>\n\n    <div class=\"footer\">\n        <p>Generated by n8n Incident Response Workflow | DeepSeek AI Analyst | TheHive Integration</p>\n    </div>\n</div>\n</body>\n</html>`;\n\n// =============================================\n// TEXT VERSION FOR SLACK\n// =============================================\nconst textReport = `========================================\nINCIDENT RESPONSE REPORT\n========================================\nCase: ${caseId}\nTime: ${timestamp}\nRisk: ${riskLevel.toUpperCase()} | Confidence: ${confidenceScore}%\nVerdict: ${verdict.toUpperCase()}\n\n========================================\nINCIDENT DETAILS\n========================================\nUser: ${username} (${domain})\nTarget Host: ${computer}\nThreat Actor IP: ${enumeratorIp}\nEnumerated Group: ${group}\nTotal Alerts: ${alertCount}\n\n========================================\nALERT SUMMARY\n========================================\n${logTableData ? logTableData.rows.map((row, i) => `${i+1}. ${row[1]}`).join('\\n') : 'No alerts'}\n\n========================================\nIMMEDIATE ACTIONS\n========================================\n1. Block IP: ${enumeratorIp}\n2. Disable user: ${username}\n3. Isolate host: ${computer}\n\n========================================\nGenerated by n8n Incident Response Automation\n========================================`;\n\n// =============================================\n// OUTPUT\n// =============================================\nreturn [{\n  json: {\n    case_id: caseId,\n    timestamp: timestamp,\n    risk_score: riskScore,\n    risk_level: riskLevel,\n    confidence_score: confidenceScore,\n    verdict: verdict,\n    enumerator_ip: enumeratorIp,\n    enumerator_name: enumeratorName,\n    target_host: computer,\n    username: username,\n    html_report: htmlReport,\n    text_report: textReport,\n    scores: {\n      risk_score: riskScore,\n      risk_level: riskLevel,\n      confidence_score: confidenceScore,\n      verdict: verdict\n    },\n    filename: `incident_report_${caseId}.html`\n  },\n  binary: {\n    html_report: {\n      data: Buffer.from(htmlReport, 'utf-8').toString('base64'),\n      mimeType: \"text/html\",\n      fileName: `incident_report_${caseId}.html`\n    },\n    text_report: {\n      data: Buffer.from(textReport, 'utf-8').toString('base64'),\n      mimeType: \"text/plain\",\n      fileName: `incident_report_${caseId}.txt`\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1424,
+        -448
+      ],
+      "id": "9d927752-a364-4d4a-890e-411b658666df",
+      "name": "Results"
+    },
+    {
+      "parameters": {
+        "jsCode": "// =============================================\n// CODE NODE 2: Generate Prompt for DeepSeek - LOG ANALYSIS & NEXT ATTACK\n// =============================================\n\n// Get data from your existing nodes\nlet wazuhAlerts = [];\nlet webhookData = {};\n\ntry {\n  // Handle different possible structures from Alerts_Content_Ext\n  const alertsContent = $('Deduplication').first().json;\n  \n  // Check if it's already an array\n  if (Array.isArray(alertsContent)) {\n    wazuhAlerts = alertsContent;\n  }\n  // Check if it has a 'hits' array\n  else if (alertsContent.hits && Array.isArray(alertsContent.hits)) {\n    wazuhAlerts = alertsContent.hits;\n  }\n  // Check if it has a 'hits.hits' structure (Elasticsearch format)\n  else if (alertsContent.hits && alertsContent.hits.hits && Array.isArray(alertsContent.hits.hits)) {\n    wazuhAlerts = alertsContent.hits.hits;\n  }\n  // Check if it has a 'data' array\n  else if (alertsContent.data && Array.isArray(alertsContent.data)) {\n    wazuhAlerts = alertsContent.data;\n  }\n  // Check if it has an 'alerts' array\n  else if (alertsContent.alerts && Array.isArray(alertsContent.alerts)) {\n    wazuhAlerts = alertsContent.alerts;\n  }\n  // If none of the above, try to convert object values to array\n  else if (typeof alertsContent === 'object' && alertsContent !== null) {\n    wazuhAlerts = Object.values(alertsContent).filter(v => Array.isArray(v))[0] || [];\n  }\n  \n  // Ensure it's an array\n  if (!Array.isArray(wazuhAlerts)) {\n    wazuhAlerts = [];\n  }\n  \n} catch(e) {\n  console.log(\"Error getting alerts:\", e.message);\n  wazuhAlerts = [];\n}\n\ntry {\n  webhookData = $('Webhook').first().json.body || {};\n} catch(e) {\n  webhookData = {};\n}\n\nconst fullLogRaw = webhookData.full_log || \"\";\n\n// =============================================\n// CLEAN AND EXTRACT DATA\n// =============================================\nlet cleanFullLog = fullLogRaw.replace(/\\\\r\\\\n/g, ' ');\ncleanFullLog = cleanFullLog.replace(/\\\\t/g, ' ');\ncleanFullLog = cleanFullLog.split('\"},\"eventdata\":')[0];\n\n// Extract key values\nlet username = \"unknown\";\nconst usernameMatch = cleanFullLog.match(/Account Name:\\s*(\\S+)/);\nif (usernameMatch) username = usernameMatch[1];\n\nlet group = \"unknown\";\nconst groupMatch = cleanFullLog.match(/Group Name:\\s*([^\\s]+(?:\\s+[^\\s]+)*?)(?=\\s+Group Domain:|$)/);\nif (groupMatch) group = groupMatch[1].trim();\n\nlet computer = \"unknown\";\nconst computerMatch = cleanFullLog.match(/computer:\\s*(\\S+)/i);\nif (computerMatch) computer = computerMatch[1];\n\nlet domain = \"unknown\";\nconst domainMatch = cleanFullLog.match(/Account Domain:\\s*(\\S+)/);\nif (domainMatch) domain = domainMatch[1];\n\nconst agentIp = webhookData.agent_ip || webhookData.src_ip || \"unknown\";\n\n// =============================================\n// EXTRACT DETAILED ALERT INFORMATION (SAFE LOOP)\n// =============================================\nconst detailedAlerts = [];\n\nif (Array.isArray(wazuhAlerts) && wazuhAlerts.length > 0) {\n  for (let i = 0; i < wazuhAlerts.length; i++) {\n    try {\n      const alert = wazuhAlerts[i];\n      \n      // Handle different alert structures\n      let source = {};\n      \n      if (alert._source) {\n        source = alert._source;\n      } else if (alert.source) {\n        source = alert.source;\n      } else {\n        source = alert;\n      }\n      \n      const content = alert.content || alert.full_log || source.full_log || JSON.stringify(source);\n      \n      // Extract command from exe field\n      let command = \"unknown\";\n      const exeMatch = content.match(/exe=\"([^\"]+)\"/);\n      if (exeMatch) {\n        command = exeMatch[1].split('/').pop();\n      }\n      \n      // Alternative command extraction from other fields\n      if (command === \"unknown\" && source.command) {\n        command = source.command;\n      }\n      if (command === \"unknown\" && source.exe) {\n        command = source.exe.split('/').pop();\n      }\n      \n      // Extract process ID\n      let processId = \"unknown\";\n      const pidMatch = content.match(/pid=\"(\\d+)\"/);\n      if (pidMatch) processId = pidMatch[1];\n      if (processId === \"unknown\" && source.pid) processId = source.pid;\n      \n      // Extract description\n      let description = source.rule?.description || source.description || source.rule_description || \"unknown\";\n      \n      // Extract timestamp\n      let timestamp = source.timestamp || alert.timestamp || source['@timestamp'] || \"unknown\";\n      \n      // Extract level\n      let level = source.rule?.level || source.level || source.rule_level || \"unknown\";\n      \n      // Only add if description is not \"unknown\" or we have some data\n      if (description !== \"unknown\" || command !== \"unknown\") {\n        detailedAlerts.push({\n          index: i + 1,\n          timestamp: timestamp,\n          description: description,\n          command: command,\n          process_id: processId,\n          level: level\n        });\n      }\n      \n    } catch(e) {\n      console.log(\"Error processing alert:\", e.message);\n    }\n  }\n}\n\n// If no detailed alerts found, create a fallback based on webhook data\nif (detailedAlerts.length === 0 && group !== \"unknown\") {\n  detailedAlerts.push({\n    index: 1,\n    timestamp: new Date().toISOString(),\n    description: `User ${username} enumerated the ${group} group on ${computer}`,\n    command: \"net group /domain\",\n    process_id: \"unknown\",\n    level: \"8\"\n  });\n}\n\n// =============================================\n// BUILD PROMPT FOR DEEPSEEK - LOG ANALYSIS & NEXT ATTACK\n// =============================================\nconst promptAnalysis = `You are a threat intelligence analyst. Analyze each alert and predict the attacker's next move.\n\n## INCIDENT CONTEXT\n\n- **User:** ${username}\n- **Domain:** ${domain}\n- **Source IP:** ${agentIp}\n- **Target Computer:** ${computer}\n- **Group Enumerated:** ${group}\n- **Total Alerts Analyzed:** ${detailedAlerts.length}\n\n## DETAILED ALERTS (${detailedAlerts.length} logs)\n\n${detailedAlerts.map(alert => `\n### Alert #${alert.index}\n- **Time:** ${alert.timestamp}\n- **Description:** ${alert.description}\n- **Command:** ${alert.command}\n- **Process ID:** ${alert.process_id}\n- **Level:** ${alert.level}\n`).join('\\n')}\n\n## TASK\n\nPerform two analyses:\n\n### PART A: LOG DESCRIPTION (For each alert)\n\nFor each alert above, provide a brief description (2-3 sentences):\n- What activity occurred\n- Why it's suspicious\n- What technique/mitre tactic it relates to\n\nFormat as a table:\n\n| Alert # | Activity Summary | Suspicious Reason | MITRE Tactic |\n|---------|-----------------|-------------------|--------------|\n| 1 | ... | ... | ... |\n\n### PART B: NEXT ATTACK PREDICTION\n\nBased on the sequence of alerts and attacker behavior patterns:\n\n1. **What is the likely NEXT attack?**\n   - Specific technique name\n   - What the attacker will try to do next\n   - Target (what they're after)\n\n2. **Attack Path**\n   - Complete kill chain from current state to potential compromise\n   - Step-by-step what happens if not stopped\n\n3. **Time to Impact**\n   - Estimated time until next attack (Immediate / Hours / Days)\n\n4. **Immediate Warnings**\n   - What to monitor for right now\n   - Red flags to watch in logs\n\n### PART C: DETECTION GAPS\n\n- What alerts are missing that would confirm the attack?\n- What additional logs should be collected?\n\nKeep analysis technical, actionable, and specific to this incident.`;\n\n// =============================================\n// DEBUG OUTPUT (remove in production)\n// =============================================\nconsole.log(\"=== CODE NODE 2 DEBUG ===\");\nconsole.log(\"wazuhAlerts type:\", typeof wazuhAlerts);\nconsole.log(\"Is array:\", Array.isArray(wazuhAlerts));\nconsole.log(\"Raw alerts count:\", wazuhAlerts.length);\nconsole.log(\"Detailed alerts extracted:\", detailedAlerts.length);\nconsole.log(\"Username:\", username);\nconsole.log(\"Group:\", group);\nconsole.log(\"Computer:\", computer);\nconsole.log(\"Agent IP:\", agentIp);\nconsole.log(\"=========================\");\n\n// =============================================\n// OUTPUT\n// =============================================\nreturn [{\n  json: {\n    prompt: promptAnalysis,\n    model: \"deepseek-r1:7b\",\n    temperature: 0.4,\n    max_tokens: 3000,\n    node_type: \"log_analysis_and_prediction\",\n    // Also pass metadata for debugging\n    debug_info: {\n      raw_alerts_count: wazuhAlerts.length,\n      detailed_alerts_count: detailedAlerts.length,\n      has_fallback: detailedAlerts.length === 0 && group !== \"unknown\"\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2400,
+        -448
+      ],
+      "id": "a532ff03-ab20-48bc-a3c8-840da3552ea4",
+      "name": "Prompt_2_AI_Gen"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"stream\": false,\n  \"options\": {\"temperature\": 0.3, \"num_predict\": 3000, \"thinking\": false, \"timeout\": 600000}\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2224,
+        -448
+      ],
+      "id": "d8efb8d1-afe5-4b81-9088-a3c79f6a121a",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "// =============================================\n// CODE NODE 3: Generate Prompt for DeepSeek - MITIGATIONS & SOLUTIONS\n// =============================================\n\n// Get data from your existing nodes\nlet wazuhAlerts = [];\nlet webhookData = {};\n\ntry {\n  // Handle different possible structures from Alerts_Content_Ext\n  const alertsContent = $('Deduplication').first().json;\n  \n  // Check if it's already an array\n  if (Array.isArray(alertsContent)) {\n    wazuhAlerts = alertsContent;\n  }\n  // Check if it has a 'hits' array\n  else if (alertsContent.hits && Array.isArray(alertsContent.hits)) {\n    wazuhAlerts = alertsContent.hits;\n  }\n  // Check if it has a 'hits.hits' structure (Elasticsearch format)\n  else if (alertsContent.hits && alertsContent.hits.hits && Array.isArray(alertsContent.hits.hits)) {\n    wazuhAlerts = alertsContent.hits.hits;\n  }\n  // Check if it has a 'data' array\n  else if (alertsContent.data && Array.isArray(alertsContent.data)) {\n    wazuhAlerts = alertsContent.data;\n  }\n  // Check if it has an 'alerts' array\n  else if (alertsContent.alerts && Array.isArray(alertsContent.alerts)) {\n    wazuhAlerts = alertsContent.alerts;\n  }\n  // If none of the above, try to convert object values to array\n  else if (typeof alertsContent === 'object' && alertsContent !== null) {\n    wazuhAlerts = Object.values(alertsContent).filter(v => Array.isArray(v))[0] || [];\n  }\n  \n  // Ensure it's an array\n  if (!Array.isArray(wazuhAlerts)) {\n    wazuhAlerts = [];\n  }\n  \n} catch(e) {\n  console.log(\"Error getting alerts:\", e.message);\n  wazuhAlerts = [];\n}\n\ntry {\n  webhookData = $('Webhook').first().json.body || {};\n} catch(e) {\n  webhookData = {};\n}\n\nconst fullLogRaw = webhookData.full_log || \"\";\n\n// =============================================\n// CLEAN AND EXTRACT DATA\n// =============================================\nlet cleanFullLog = fullLogRaw.replace(/\\\\r\\\\n/g, ' ');\ncleanFullLog = cleanFullLog.replace(/\\\\t/g, ' ');\ncleanFullLog = cleanFullLog.split('\"},\"eventdata\":')[0];\n\nlet username = \"unknown\";\nconst usernameMatch = cleanFullLog.match(/Account Name:\\s*(\\S+)/);\nif (usernameMatch) username = usernameMatch[1];\n\nlet group = \"unknown\";\nconst groupMatch = cleanFullLog.match(/Group Name:\\s*([^\\s]+(?:\\s+[^\\s]+)*?)(?=\\s+Group Domain:|$)/);\nif (groupMatch) group = groupMatch[1].trim();\n\nlet computer = \"unknown\";\nconst computerMatch = cleanFullLog.match(/computer:\\s*(\\S+)/i);\nif (computerMatch) computer = computerMatch[1];\n\nlet domain = \"unknown\";\nconst domainMatch = cleanFullLog.match(/Account Domain:\\s*(\\S+)/);\nif (domainMatch) domain = domainMatch[1];\n\nconst agentIp = webhookData.agent_ip || webhookData.src_ip || \"unknown\";\n\n// =============================================\n// EXTRACT TECHNIQUES AND DESCRIPTIONS (SAFE LOOP)\n// =============================================\nconst techniques = [];\nconst descriptions = [];\n\nif (Array.isArray(wazuhAlerts) && wazuhAlerts.length > 0) {\n  for (const alert of wazuhAlerts) {\n    try {\n      // Handle different alert structures\n      let source = {};\n      \n      if (alert._source) {\n        source = alert._source;\n      } else if (alert.source) {\n        source = alert.source;\n      } else {\n        source = alert;\n      }\n      \n      // Extract description\n      let desc = source.rule?.description || source.description || source.rule_description;\n      \n      if (desc) {\n        descriptions.push(desc);\n        \n        const descLower = desc.toLowerCase();\n        \n        if (descLower.includes(\"bloodhound\")) techniques.push(\"BloodHound AD Discovery\");\n        if (descLower.includes(\"netstat\")) techniques.push(\"Network Reconnaissance\");\n        if (descLower.includes(\"enumeration\")) techniques.push(\"Permission Groups Discovery\");\n        if (descLower.includes(\"command\")) techniques.push(\"Command and Scripting Interpreter\");\n        if (descLower.includes(\"group\")) techniques.push(\"Permission Groups Discovery\");\n        if (descLower.includes(\"ad\")) techniques.push(\"Active Directory Discovery\");\n      }\n      \n    } catch(e) {\n      console.log(\"Error processing alert:\", e.message);\n    }\n  }\n}\n\n// If no techniques found, add default based on the enumeration\nconst uniqueTechniques = [...new Set(techniques)];\nif (uniqueTechniques.length === 0 && group !== \"unknown\") {\n  uniqueTechniques.push(\"T1069 - Permission Groups Discovery\");\n}\n\n// If no descriptions, add fallback\nlet finalDescriptions = descriptions;\nif (finalDescriptions.length === 0 && group !== \"unknown\") {\n  finalDescriptions = [`User ${username} enumerated the ${group} group on ${computer}`];\n}\n\n// =============================================\n// BUILD PROMPT FOR DEEPSEEK - MITIGATIONS & SOLUTIONS\n// =============================================\nconst promptMitigations = `You are a security architect. Provide comprehensive mitigations and solutions for this detected threat.\n\n## INCIDENT DETAILS\n\n| Field | Value |\n|-------|-------|\n| User | ${username} |\n| Domain | ${domain} |\n| Source IP | ${agentIp} |\n| Target Computer | ${computer} |\n| Group Enumerated | ${group} |\n| Total Alerts | ${wazuhAlerts.length} |\n| Techniques Detected | ${uniqueTechniques.join(', ') || \"AD Enumeration\"} |\n\n## ALERT CONTEXT\n\nThe following activities were observed:\n${finalDescriptions.slice(0, 10).map(d => `- ${d}`).join('\\n') || \"- AD group enumeration detected\"}\n\n## TASK\n\nProvide a complete MITIGATION AND SOLUTION plan with these sections:\n\n### 1. IMMEDIATE CONTAINMENT (Next 1 hour)\n\nList specific actions to stop the attack right now:\n- Network level (firewall blocks, IP restrictions)\n- Host level (isolation, process termination)\n- Account level (disable user, reset credentials)\n- AD level (revoke permissions, change group memberships)\n\nEach action should include:\n- Action description\n- Command/code (if applicable)\n- Expected outcome\n\n### 2. SHORT-TERM REMEDIATION (Next 24-48 hours)\n\nPermanent fixes to remove attacker access:\n- Credential reset procedures\n- Backdoor removal\n- Persistence mechanism cleanup\n- Privilege revocation\n\n### 3. LONG-TERM PREVENTION (Next 30 days)\n\nSystemic changes to prevent recurrence:\n\n#### Detection Improvements\n- New Sigma rules\n- Wazuh custom rules\n- Velociraptor artifacts to add\n\n#### Configuration Hardening\n- Group Policy changes\n- AD security settings\n- Audit policy changes\n\n#### Process Changes\n- User access reviews\n- Monitoring improvements\n- Response playbook updates\n\n### 4. SPECIFIC MITIGATIONS BY TECHNIQUE\n\nFor each detected technique, provide specific mitigation:\n\n| Technique | Mitigation | Priority |\n|-----------|-----------|----------|\n${uniqueTechniques.map(t => `| ${t} | ... | High/Med/Low |`).join('\\n')}\n\n### 5. ROOT CAUSE ANALYSIS\n\n- How did the attacker get initial access?\n- What security control failed?\n- What should have stopped this?\n\n### 6. IMPLEMENTATION CHECKLIST\n\nActionable checklist for the SOC team:\n\n- [ ] Block IP ${agentIp} at perimeter firewall (Network Team)\n- [ ] Disable or reset credentials for user ${username} (IAM Team)\n- [ ] Isolate host ${computer} for forensic analysis (IT Team)\n- [ ] Review authentication logs for ${username} (SOC)\n- [ ] Update detection rules for AD enumeration (Detection Team)\n\nProvide practical, actionable solutions. Include commands, scripts, or configuration examples where possible.`;\n\n// =============================================\n// DEBUG OUTPUT (remove in production)\n// =============================================\nconsole.log(\"=== CODE NODE 3 DEBUG ===\");\nconsole.log(\"wazuhAlerts type:\", typeof wazuhAlerts);\nconsole.log(\"Is array:\", Array.isArray(wazuhAlerts));\nconsole.log(\"Raw alerts count:\", wazuhAlerts.length);\nconsole.log(\"Descriptions found:\", finalDescriptions.length);\nconsole.log(\"Techniques found:\", uniqueTechniques);\nconsole.log(\"Username:\", username);\nconsole.log(\"Group:\", group);\nconsole.log(\"Computer:\", computer);\nconsole.log(\"Agent IP:\", agentIp);\nconsole.log(\"=========================\");\n\n// =============================================\n// OUTPUT\n// =============================================\nreturn [{\n  json: {\n    prompt: promptMitigations,\n    model: \"deepseek-r1:7b\",\n    temperature: 0.3,\n    max_tokens: 4000,\n    node_type: \"mitigations_and_solutions\",\n    // Also pass metadata for debugging\n    debug_info: {\n      raw_alerts_count: wazuhAlerts.length,\n      descriptions_count: finalDescriptions.length,\n      techniques_found: uniqueTechniques,\n      has_fallback: finalDescriptions.length === 1 && finalDescriptions[0].includes(\"enumerated\")\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2400,
+        -144
+      ],
+      "id": "e987df27-5082-4e39-87c8-51379449edc6",
+      "name": "Prompt_2_AI_Gen2"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"stream\": false,\n  \"options\": {\"temperature\": 0.3, \"num_predict\": 3000, \"thinking\": false, \"timeout\": 600000}\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2224,
+        -144
+      ],
+      "id": "57f4e12b-1f43-4203-8261-7bae6b27292b",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -1792,
+        -464
+      ],
+      "id": "d90790c1-1cb1-4dde-a7cb-e8a6109e7e7a",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.1.13:11434/api/generate",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "deepseek-r1:7b"
+            },
+            {
+              "name": "prompt",
+              "value": "={{ $('Prompt_2_AI_Gen').item.json.prompt }}"
+            },
+            {
+              "name": "=options",
+              "value": "={{ $json.options }}"
+            },
+            {
+              "name": "stream",
+              "value": "={{ $json.stream }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -2048,
+        -448
+      ],
+      "id": "93b6d6b3-758f-4ea1-aa93-918d2ab888cd",
+      "name": "DeepSeek_Log_Analysis"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.1.13:11434/api/generate",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "deepseek-r1:7b"
+            },
+            {
+              "name": "prompt",
+              "value": "={{ $('Prompt_2_AI_Gen1').item.json.prompt }}"
+            },
+            {
+              "name": "=options",
+              "value": "={{ $json.options }}"
+            },
+            {
+              "name": "stream",
+              "value": "={{ $json.stream }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -2048,
+        -736
+      ],
+      "id": "33a6dbf2-0556-4b30-a677-30bb6cd59a28",
+      "name": "DeepSeek_Summarize"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.1.13:11434/api/generate",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "deepseek-r1:7b"
+            },
+            {
+              "name": "prompt",
+              "value": "={{ $('Prompt_2_AI_Gen2').item.json.prompt }}"
+            },
+            {
+              "name": "=options",
+              "value": "={{ $json.options }}"
+            },
+            {
+              "name": "stream",
+              "value": "={{ $json.stream }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -2048,
+        -144
+      ],
+      "id": "5aa9ebb3-bd57-426d-96d1-9f828be6d30b",
+      "name": "DeepSeek_Mitigations"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://192.168.77.100:9200/wazuh-alerts-*/_search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "username",
+              "value": "admin"
+            },
+            {
+              "name": "password",
+              "value": "kUFk.11zK3dUfGK?WERDgwicc4u4*JLX"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"size\": 50,\n  \"sort\": [\n    {\n      \"timestamp\": {\n        \"order\": \"desc\"\n      }\n    }\n  ],\n  \"query\": {\n    \"bool\": {\n      \"must\": [\n        {\n          \"term\": {\n            \"agent.ip\": \"{{ $('Webhook').item.json.body.enumerator_ip }}\"\n          }\n        }\n      ],\n      \"must_not\": [\n        {\n          \"term\": {\n            \"rule.description\": \"AD: Local group enumeration\"\n          }\n        }\n      ]\n    }\n  },\n  \"_source\": [\n    \"agent.name\",\n    \"agent.ip\",\n    \"rule.description\",\n    \"rule.mitre\",\n    \"rule.id\",\n    \"rule.level\",\n    \"timestamp\",\n    \"data.srcip\"\n  ]\n}",
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -2896,
+        -448
+      ],
+      "id": "45da57a6-0dda-4d9c-b50c-6d263256e514",
+      "name": "Alerts_Content_Ext",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "WiV6qwz72SGNIUTE",
+          "name": "Bearer Auth account 2"
+        },
+        "httpBasicAuth": {
+          "id": "IS8Pl8fB8YY1CYaN",
+          "name": "Unnamed credential 5"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// =============================================\n// CODE NODE: Deduplicate Wazuh Alerts\n// Removes alerts with identical: agent.name, agent.ip, rule.description, \n// rule.mitre, rule.id, rule.level, data.srcip\n// Keeps only the most recent timestamp per unique combination\n// =============================================\n\nconst wazuhResponse = $input.first().json;\n\n// Extract alerts from response (handles different structures)\nlet alerts = [];\nif (wazuhResponse.hits?.hits) {\n  alerts = wazuhResponse.hits.hits;\n} else if (Array.isArray(wazuhResponse)) {\n  alerts = wazuhResponse;\n} else if (wazuhResponse.data?.hits) {\n  alerts = wazuhResponse.data.hits;\n} else {\n  alerts = [];\n}\n\n// =============================================\n// STEP 1: Create unique key for each alert based on your fields\n// =============================================\nconst uniqueAlerts = new Map(); // Key -> alert (keeps latest)\n\nfor (const alert of alerts) {\n  const source = alert._source || alert;\n  \n  // Extract the fields you care about\n  const agentName = source.agent?.name || source.agent_name || \"\";\n  const agentIp = source.agent?.ip || source.agent_ip || \"\";\n  const ruleDescription = source.rule?.description || source.description || \"\";\n  const ruleMitre = source.rule?.mitre || source.mitre || \"\";\n  const ruleId = source.rule?.id || source.rule_id || \"\";\n  const ruleLevel = source.rule?.level || source.level || \"\";\n  const timestamp = source.timestamp || alert.timestamp || \"\";\n  const srcIp = source.data?.srcip || source.src_ip || \"\";\n  \n  // Create a unique key from all fields (empty values become empty strings)\n  const uniqueKey = `${agentName}|${agentIp}|${ruleDescription}|${JSON.stringify(ruleMitre)}|${ruleId}|${ruleLevel}|${srcIp}`;\n  \n  // Check if we already have this combination\n  if (!uniqueAlerts.has(uniqueKey)) {\n    // Store the alert with its timestamp\n    uniqueAlerts.set(uniqueKey, {\n      agent: { name: agentName, ip: agentIp },\n      rule: {\n        description: ruleDescription,\n        mitre: ruleMitre,\n        id: ruleId,\n        level: ruleLevel\n      },\n      src_ip: srcIp,\n      timestamp: timestamp,\n      original_alert: source\n    });\n  } else {\n    // If duplicate, keep the one with newer timestamp\n    const existing = uniqueAlerts.get(uniqueKey);\n    if (new Date(timestamp) > new Date(existing.timestamp)) {\n      uniqueAlerts.set(uniqueKey, {\n        agent: { name: agentName, ip: agentIp },\n        rule: {\n          description: ruleDescription,\n          mitre: ruleMitre,\n          id: ruleId,\n          level: ruleLevel\n        },\n        src_ip: srcIp,\n        timestamp: timestamp,\n        original_alert: source\n      });\n    }\n  }\n}\n\n// =============================================\n// STEP 2: Convert Map to array and sort by timestamp\n// =============================================\nconst deduplicatedAlerts = Array.from(uniqueAlerts.values());\n\n// Sort by timestamp (newest first)\ndeduplicatedAlerts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));\n\n// =============================================\n// STEP 3: Create clean output (without original_alert)\n// =============================================\nconst cleanAlerts = deduplicatedAlerts.map(alert => ({\n  agent: alert.agent,\n  rule: alert.rule,\n  src_ip: alert.src_ip,\n  timestamp: alert.timestamp\n}));\n\n// =============================================\n// STEP 4: Summary statistics\n// =============================================\nconst summary = {\n  total_raw_alerts: alerts.length,\n  total_unique_alerts: cleanAlerts.length,\n  duplicates_removed: alerts.length - cleanAlerts.length,\n  deduplication_rate: ((alerts.length - cleanAlerts.length) / alerts.length * 100).toFixed(1) + \"%\",\n  unique_rules: [...new Set(cleanAlerts.map(a => a.rule.id))],\n  unique_agents: [...new Set(cleanAlerts.map(a => a.agent.name))],\n  highest_level: Math.max(...cleanAlerts.map(a => parseInt(a.rule.level) || 0), 0)\n};\n\n// =============================================\n// STEP 5: OUTPUT\n// =============================================\nreturn [{\n  json: {\n    // Clean deduplicated alerts - ready for DeepSeek\n    alerts: cleanAlerts,\n    \n    // Summary statistics\n    summary: summary,\n    \n    // For quick reference (text format)\n    quick_view: cleanAlerts.map(a => \n      `[${a.rule.level}] ${a.rule.description} | ${a.agent.name} (${a.agent.ip}) | ${a.timestamp}`\n    ).join('\\n'),\n    \n    // For DeepSeek prompt generation\n    deepseek_input: {\n      total_alerts: cleanAlerts.length,\n      alert_descriptions: cleanAlerts.map(a => a.rule.description),\n      rule_ids: summary.unique_rules,\n      agents: summary.unique_agents,\n      highest_level: summary.highest_level,\n      all_alerts: cleanAlerts\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2720,
+        -448
+      ],
+      "id": "5f177bb6-9e85-4d71-8d77-599f7b0b7b01",
+      "name": "Deduplication"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "options": {
+          "channelId": "C0BAKGFU8H2"
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        -1456,
+        -144
+      ],
+      "id": "16994722-9b76-4f4c-bf91-61815a79df0c",
+      "name": "Upload a file",
+      "webhookId": "b4f2f775-ef4c-4a28-a48e-a50e9ee54180",
+      "credentials": {
+        "slackApi": {
+          "id": "C6h4ZokKhE8d5akK",
+          "name": "Slack account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.pdfshift.io/v3/convert/pdf",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"source\": {{ JSON.stringify($json.html_report) }},\n    \"sandbox\": true\n  }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -1728,
+        -144
+      ],
+      "id": "298e7673-fc32-4b63-806e-86a873d9406e",
+      "name": "HTML_2_PDF"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.77.254:4555/api/v2/firewall/rule",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"type\": \"block\",\n  \"floating\": true,\n  \"quick\": true,\n  \"ipprotocol\": \"inet\",\n  \"interface\": [\"opt1\"],\n  \"protocol\": \"tcp/udp\",\n  \"source\": \"{{ $('Webhook').item.json.body.enumerator_ip }}\",\n  \"destination\": \"any\",\n  \"descr\": \"Blocked automatically by n8n for phishing attempt\"\n}",
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -4176,
+        -304
+      ],
+      "id": "e36d4aec-b128-42d0-8294-de0df3d81576",
+      "name": "Blocking_Malicious_IP1",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "7okRSbwOWnVgK4uM",
+          "name": "Unnamed credential 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.77.254:4555/api/v2/firewall/rule",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"type\": \"block\",\n  \"floating\": true,\n  \"quick\": true,\n  \"ipprotocol\": \"inet\",\n  \"interface\": [\"opt3\"],\n  \"protocol\": \"tcp/udp\",\n  \"source\": \"{{ $('Webhook').item.json.body.enumerator_ip }}\",\n  \"destination\": \"any\",\n  \"descr\": \"Blocked automatically by n8n for phishing attempt\"\n}",
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -4176,
+        -96
+      ],
+      "id": "1a47a00d-5633-4c6d-a4aa-e31b1d7008f3",
+      "name": "Blocking_Malicious_IP2",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "7okRSbwOWnVgK4uM",
+          "name": "Unnamed credential 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.77.254:4555/api/v2/firewall/rule",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"type\": \"block\",\n  \"floating\": true,\n  \"quick\": true,\n  \"ipprotocol\": \"inet\",\n  \"interface\": [\"lan\"],\n  \"protocol\": \"tcp/udp\",\n  \"source\": \"{{ $('Webhook').item.json.body.enumerator_ip }}\",\n  \"destination\": \"192.168.77.10\",\n  \"descr\": \"Blocked automatically by n8n for phishing attempt\"\n}",
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -4176,
+        128
+      ],
+      "id": "77374af7-5ffa-4cac-abf2-e2f7e559b3c0",
+      "name": "Blocking_Malicious_IP3",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "7okRSbwOWnVgK4uM",
+          "name": "Unnamed credential 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -3936,
+        -112
+      ],
+      "id": "30c799f9-f2ec-4d70-a886-9128c37b3eaf",
+      "name": "Merge2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Create an alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Create a case",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a case": {
+      "main": [
+        [
+          {
+            "node": "Create an observable",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Create an observable1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an observable": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an observable1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Alerts_Content_Ext",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Blocking_Malicious_IP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Critical_Alert": {
+      "main": [
+        [
+          {
+            "node": "Update a task1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update a task": {
+      "main": [
+        [
+          {
+            "node": "Prompt_2_AI_Gen1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Prompt_2_AI_Gen",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Prompt_2_AI_Gen2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prompt_2_AI_Gen1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "DeepSeek_Summarize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Blocking_Malicious_IP": {
+      "main": [
+        [
+          {
+            "node": "Critical_Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an alert": {
+      "main": [
+        [
+          {
+            "node": "Blocking_Malicious_IP1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Blocking_Malicious_IP3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Blocking_Malicious_IP2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update a task1": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Results": {
+      "main": [
+        [
+          {
+            "node": "HTML_2_PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update a task2": {
+      "main": [
+        [
+          {
+            "node": "Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prompt_2_AI_Gen": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "DeepSeek_Log_Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prompt_2_AI_Gen2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "DeepSeek_Mitigations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Update a task2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek_Log_Analysis": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "DeepSeek_Summarize": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek_Mitigations": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Alerts_Content_Ext": {
+      "main": [
+        [
+          {
+            "node": "Deduplication",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deduplication": {
+      "main": [
+        [
+          {
+            "node": "Update a task",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Blocklist_Warn_IP_ADD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML_2_PDF": {
+      "main": [
+        [
+          {
+            "node": "Upload a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Blocking_Malicious_IP1": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Blocking_Malicious_IP2": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Blocking_Malicious_IP3": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "818a498a-85b3-4c77-97c3-31485d04cc65",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0622c4b1ed9e2887f774b179d12de25d19cf86a56376c52d6becdac095cc98a8"
+  },
+  "id": "bK9pNQtChovq1uBf",
+  "tags": []
+}
