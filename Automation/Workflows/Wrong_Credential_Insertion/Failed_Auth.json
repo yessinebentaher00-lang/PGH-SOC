@@ -1,0 +1,196 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "Critical",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1344,
+        -272
+      ],
+      "id": "b9a1069a-6f29-418a-ac9e-0c0b3b4d6dce",
+      "name": "Webhook",
+      "webhookId": "a8252ef7-be0d-4ab0-9dd4-305870afcea4"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.77.254:4555/api/v2/firewall/rule",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"type\": \"block\",\n  \"floating\": true,\n  \"quick\": true,\n  \"ipprotocol\": \"inet\",\n  \"interface\": [\"opt1\"],\n  \"protocol\": \"tcp/udp\",\n  \"source\": \"{{ $json.body.src_ip }}\",\n  \"destination\": \"192.168.10.5\",\n  \"descr\": \"Blocked automatically by n8n for brute force\"\n}",
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -1072,
+        -272
+      ],
+      "id": "59fb8557-eef7-4b61-a9eb-5f3d00219270",
+      "name": "Block_Web_Server_Access",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "scJJU4ftS18h4lXk",
+          "name": "Unnamed credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "n8n_reports",
+          "mode": "name"
+        },
+        "text": "={{ $('Webhook').item.json.body.rule_description }} \nwe are going to block that user instantly\nwith the ip {{ $('Webhook').item.json.body.src_ip }}",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        -784,
+        -272
+      ],
+      "id": "5ee22d7e-4580-4f1a-bc6c-c899e3d1b544",
+      "name": "Manager_Alerting",
+      "webhookId": "c75dfa5d-8c78-4150-84d9-4408a182387f",
+      "credentials": {
+        "slackApi": {
+          "id": "znnZNdHuSIbTAUN4",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.77.254:4555/api/v2/firewall/rule",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"type\": \"block\",\n  \"floating\": true,\n  \"quick\": true,\n  \"ipprotocol\": \"inet\",\n  \"interface\": [\"opt3\"],\n  \"protocol\": \"tcp/udp\",\n  \"source\": \"192.168.10.5\",\n  \"destination\": \"{{ $json.body.src_ip }}\",\n  \"descr\": \"Blocked automatically by n8n for brute force\"\n}",
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -1072,
+        32
+      ],
+      "id": "795b33be-fd76-4255-9328-290579cb3df6",
+      "name": "Blocking_Rule_Creation",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "scJJU4ftS18h4lXk",
+          "name": "Unnamed credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "command": "=pfctl -t block_list -T add {{ $json.body.src_ip }}"
+      },
+      "type": "n8n-nodes-base.ssh",
+      "typeVersion": 1,
+      "position": [
+        -1072,
+        -528
+      ],
+      "id": "4eb48bf3-6707-40f6-b101-f73d64c12463",
+      "name": "Block_List",
+      "credentials": {
+        "sshPassword": {
+          "id": "kvOQC4O3QT4Zm3wI",
+          "name": "SSH Password account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Block_List",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Block_Web_Server_Access",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Blocking_Rule_Creation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Block_List": {
+      "main": [
+        [
+          {
+            "node": "Manager_Alerting",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "494476bc-2962-4661-baca-e323c90f04f4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0622c4b1ed9e2887f774b179d12de25d19cf86a56376c52d6becdac095cc98a8"
+  },
+  "id": "L0OqcEYIeJw9GySh",
+  "tags": []
+}
