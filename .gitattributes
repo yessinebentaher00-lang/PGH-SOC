@@ -1,1 +1,2 @@
+csr1000v-universalk9.16.08.01a-serial.zip filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
