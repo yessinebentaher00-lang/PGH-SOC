@@ -1,0 +1,23 @@
+<decoder name="mailcow-watchdog">
+  <program_name>mailcow/mailcowdockerized-watchdog-mailcow-1</program_name>
+</decoder>
+
+<decoder name="mailcow-dovecot">
+  <program_name>mailcow/mailcowdockerized-dovecot-mailcow-1</program_name>
+</decoder>
+
+<decoder name="mailcow-nginx">
+  <program_name>mailcow/mailcowdockerized-nginx-mailcow-1</program_name>
+</decoder>
+
+<decoder name="mailcow-php">
+  <program_name>mailcow/mailcowdockerized-php-fpm-mailcow-1</program_name>
+</decoder>
+
+<decoder name="mailcow-sogo">
+  <program_name>mailcow/mailcowdockerized-sogo-mailcow-1</program_name>
+</decoder>
+
+<decoder name="mailcow-postfix">
+  <program_name>mailcow/mailcowdockerized-postfix-mailcow-1</program_name>
+</decoder>
