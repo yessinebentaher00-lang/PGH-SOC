@@ -1,4 +1,5 @@
 In this part, we shall discover the main rules that were probably necessary to englobe most of the realistic cases faced in each scenario:
+
 [Go to Rules](#rules)
 
 
@@ -39,7 +40,9 @@ In this part, we shall discover the main rules that were probably necessary to e
 **In addition to the essential detection rules, I have also prepared a set of additional mailing rules based on normal and habitual mail transactions. These rules are still in progress and are not critical for tracking malicious activities; they mainly cover general mailing server operations and routine activities.**
 
 ## Additional Mailcow Rules — Health, Authentication, and Compromise Detection:
-#rules
+
+# rules
+
 | **Rule ID** | **Name** | **Level** | **Severity** | **Utility** |
 |---------|------|-------|----------|---------|
 | 110100 | Dovecot: Unknown User | 5 | Medium | Failed login due to unknown user (account enumeration) |
