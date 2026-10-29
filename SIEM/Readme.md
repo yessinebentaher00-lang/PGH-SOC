@@ -34,6 +34,37 @@ In this part, we shall discover the main rules that were probably necessary to e
 | 120020  | Sensitive Info Request | 10 | High | Email requests personal/sensitive information |
 | 120021  | Attachment Mention | 8 | High | Email mentions or includes attachment for immediate investigation |
 
+**In addition to the essential detection rules, I have also prepared a set of additional mailing rules based on normal and habitual mail transactions. These rules are still in progress and are not critical for tracking malicious activities; they mainly cover general mailing server operations and routine activities.**
+
+## Additional Mailcow Rules — Health, Authentication, and Compromise Detection:
+
+| **Rule ID** | **Name** | **Level** | **Severity** | **Utility** |
+|---------|------|-------|----------|---------|
+| 110100 | Dovecot: Unknown User | 5 | Medium | Failed login due to unknown user (account enumeration) |
+| 110101 | Dovecot: Wrong Password | 5 | Medium | Failed login due to incorrect password |
+| 110102 | Dovecot: Aborted Login | 4 | Low | Aborted login — possible reconnaissance |
+| 110120 | Postfix: Health OK | 1 | Basic | Postfix health status is 100% |
+| 110121 | Postfix: Health Degraded | 7 | High | Postfix health below 100% — investigation needed |
+| 110122 | Dovecot: Health OK | 1 | Basic | Dovecot health status is 100% |
+| 110123 | Dovecot: Health Degraded | 7 | High | Dovecot health below 100% — investigation needed |
+| 110130 | SOGo: Health OK | 1 | Basic | SOGo health status is 100% |
+| 110131 | SOGo: Health Degraded | 7 | High | SOGo health below 100% — investigation needed |
+| 110140 | API Access Detected | 2 | Low | API endpoint accessed (GET/POST) |
+| 110141 | API Authentication Failure | 3 | Low | API returned 401/403 — authentication failure |
+| 110150 | PHP-FPM API Access | 2 | Low | PHP-FPM API endpoint accessed |
+| 110200 | Phishing: Typosquatting Domain | 8 | High | Sender domain mimics known brands (typosquatting) |
+| 110201 | Phishing: Common Keywords | 7 | High | Email contains common phishing keywords |
+| 110202 | Phishing: Urgency Tactics | 6 | Medium | Email uses urgency tactics (act now, limited time) |
+| 110203 | Phishing: Suspicious Attachment | 9 | High | Email contains dangerous attachment types (.exe, .scr, .js) |
+| 110205 | Phishing: URL Shortener | 7 | High | Email contains shortened URL (bit.ly, tinyurl) |
+| 110207 | Phishing: DMARC/SPF/DKIM Fail | 9 | High | Email authentication failed — possible spoofing |
+| 110220 | Rspamd: Phishing Score | 5 | Medium | Rspamd detected phishing score |
+| 110221 | Rspamd: High Confidence Phishing | 7 | High | Rspamd high-confidence phishing detected |
+| 110222 | Rspamd: High Spam Score | 6 | Medium | Rspamd detected high spam score |
+| 110230 | Multiple Auth Attempts (Same IP) | 8 | High | Multiple authentication attempts from same IP — possible brute force |
+| 110231 | High Volume Outbound Emails | 10 | High | High volume of outbound emails — possible compromised account sending spam |
+
+
 ## Suspicious Command Detection:
 
 | **Rule ID** | **Name** | **Level** | **Severity** | **Utility** |
@@ -104,3 +135,14 @@ In this part, we shall discover the main rules that were probably necessary to e
 | 110506 | CrackMapExec | 10 | High | CrackMapExec tool executed |
 | 110507 | Rubeus | 12 | Critical | Rubeus Kerberos attack tool detected |
 | 110508 | Mimikatz | 15 | Critical | Mimikatz credential dumping tool detected |
+
+## Best practices:
+
+**1-** Use local_rules.xml for Minor Tweaks: If you are just making small adjustments or adding a few rules, you can use the default local_rules.xml file located at **/var/ossec/etc/rules/local_rules.xml** .
+
+**2-** Overwriting Built-in Rules: If you need to modify a rule that comes with Wazuh by default, do not edit the original file. Copy the rule into a file in /var/ossec/etc/rules/, make your changes, and add the overwrite="yes" attribute to the rule tag .
+
+**3-** Check File Permissions: After copying files, ensure the Wazuh service can read them. The files should typically be owned by the wazuh user and group (e.g., **sudo chown wazuh:wazuh /var/ossec/etc/rules/local_rules.xml**) .
+
+**4-** Restart the Manager: After adding or modifying rules or decoders, restart the Wazuh manager for the changes to take effect **(sudo systemctl restart wazuh-manager)**.
+
