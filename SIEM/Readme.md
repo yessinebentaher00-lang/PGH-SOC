@@ -1,4 +1,6 @@
 In this part, we shall discover the main rules that were probably necessary to englobe most of the realistic cases faced in each scenario:
+[Go to Rules](#rules)
+
 
 ## PGHConnect authentication issues:
 
@@ -37,7 +39,7 @@ In this part, we shall discover the main rules that were probably necessary to e
 **In addition to the essential detection rules, I have also prepared a set of additional mailing rules based on normal and habitual mail transactions. These rules are still in progress and are not critical for tracking malicious activities; they mainly cover general mailing server operations and routine activities.**
 
 ## Additional Mailcow Rules — Health, Authentication, and Compromise Detection:
-
+#rules
 | **Rule ID** | **Name** | **Level** | **Severity** | **Utility** |
 |---------|------|-------|----------|---------|
 | 110100 | Dovecot: Unknown User | 5 | Medium | Failed login due to unknown user (account enumeration) |
@@ -146,3 +148,83 @@ In this part, we shall discover the main rules that were probably necessary to e
 
 **4-** Restart the Manager: After adding or modifying rules or decoders, restart the Wazuh manager for the changes to take effect **(sudo systemctl restart wazuh-manager)**.
 
+
+Integrations in ossec.conf
+The following integrations are configured in the Wazuh manager's ossec.conf file. Each integration forwards specific alerts to external tools for case management, automation, or forensic response.
+
+TheHive Integration
+
+```xml
+<integration>
+  <name>custom-w2thive</name>
+  <hook_url>http://192.168.77.160:9000</hook_url>
+  <api_key>evz4gOd8TGqPg2gfePE6RgZXvOBFiOFO</api_key>
+  <alert_format>json</alert_format>
+</integration>
+```
+
+What to watch:
+
+IP address and port: Ensure 192.168.77.160:9000 matches your TheHive server's actual IP and port.
+
+API key: The key is specific to your TheHive user. If you change users or regenerate the API key, update this value.
+
+No rule_id filter: This integration forwards every alert to TheHive. If you want only specific rules to create cases, add <rule_id> tags.
+
+Network reachability: The Wazuh manager must be able to reach TheHive on port 9000. Test with curl http://192.168.77.160:9000.
+
+n8n Integrations (Four Webhooks)
+```xml
+<integration>
+  <name>custom-n8n</name>
+  <hook_url>http://192.168.77.200:5678/webhook-test/Critical</hook_url>
+  <rule_id>110006,110007,110008</rule_id>
+</integration>
+```
+
+What to watch:
+
+Webhook paths: You are using /webhook-test/ (test mode). In production, switch to /webhook/ and update all four URLs.
+
+n8n status: If n8n is down, integrations will fail silently. Monitor n8n's availability.
+
+Rule ID mapping: Each webhook fires only for the rules listed in <rule_id>:
+
+Critical → 110006, 110007, 110008 (brute force / DDoS)
+
+Phishing → 120010–120021
+
+Privilege → 110051–110060 and 5401–5407
+
+AD → 110401
+
+Network reachability: The Wazuh manager must reach 192.168.77.200:5678.
+
+Velociraptor Integration (Command + Active Response)
+text
+```xml
+<command>
+  <name>install-velo</name>
+  <executable>install-velo.py</executable>
+  <timeout_allowed>no</timeout_allowed>
+</command>
+
+<active-response>
+  <disabled>no</disabled>
+  <command>install-velo</command>
+  <location>local</location>
+  <rules_id>5710,5712,5715</rules_id>
+</active-response>
+```
+
+What to watch:
+
+Script location: install-velo.py must exist in /var/ossec/active-response/bin/ and be executable (chmod +x).
+
+Python dependency: The script requires Python 3 on the endpoint. Ensure python3 is installed and in the PATH.
+
+Rule IDs: The active response triggers only for rules 5710, 5712, 5715 (Wazuh built-in rules for SSH brute force / authentication failures). If you want Velociraptor to trigger on your custom rules (e.g., 110006), add them to the <rules_id> list.
+
+Permissions: The script runs as the wazuh user. Ensure it has write access to any directories it uses.
+
+Network: Velociraptor must be able to reach the Velociraptor server. Verify the server address inside install-velo.py.
