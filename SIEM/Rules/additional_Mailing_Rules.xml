@@ -1,0 +1,209 @@
+<!-- Mailcow Server Rules - Complete Monitoring Solution -->
+<group name="mailcow">
+
+  <!-- ============================================= -->
+  <!-- DOVECOT AUTHENTICATION RULES                  -->
+  <!-- ============================================= -->
+
+  <rule id="110100" level="5">
+    <program_name>mailcow/mailcowdockerized-dovecot-mailcow-1</program_name>
+    <match>unknown user|user unknown</match>
+    <description>Mailcow - Dovecot: Failed login - Unknown user (account enumeration)</description>
+    <group>authentication_failed,mailcow,account_enumeration,</group>
+  </rule>
+
+  <rule id="110101" level="5">
+    <program_name>mailcow/mailcowdockerized-dovecot-mailcow-1</program_name>
+    <match>auth failed|authentication failed|password mismatch</match>
+    <description>Mailcow - Dovecot: Failed login - Wrong password</description>
+    <group>authentication_failed,mailcow,</group>
+  </rule>
+
+  <rule id="110102" level="4">
+    <program_name>mailcow/mailcowdockerized-dovecot-mailcow-1</program_name>
+    <match>Aborted login|Disconnected</match>
+    <description>Mailcow - Dovecot: Aborted login - Possible reconnaissance</description>
+    <group>authentication_failed,mailcow,recon,</group>
+  </rule>
+
+  <!-- ============================================= -->
+  <!-- POSTFIX HEALTH RULES                          -->
+  <!-- ============================================= -->
+
+  <rule id="110120" level="1">
+    <program_name>mailcow/mailcowdockerized-watchdog-mailcow-1</program_name>
+    <match>Postfix health level: 100%</match>
+    <description>Mailcow - Postfix: Health OK</description>
+    <group>mailcow,health,</group>
+  </rule>
+
+  <rule id="110121" level="7">
+    <program_name>mailcow/mailcowdockerized-watchdog-mailcow-1</program_name>
+    <match>Postfix health level:</match>
+    <match>100%</match>
+    <description>Mailcow - Postfix: Health degraded - Investigation needed</description>
+    <group>mailcow,health,degraded,</group>
+  </rule>
+
+  <!-- ============================================= -->
+  <!-- DOVECOT HEALTH RULES                          -->
+  <!-- ============================================= -->
+
+  <rule id="110122" level="1">
+    <program_name>mailcow/mailcowdockerized-watchdog-mailcow-1</program_name>
+    <match>Dovecot health level: 100%</match>
+    <description>Mailcow - Dovecot: Health OK</description>
+    <group>mailcow,health,</group>
+  </rule>
+
+  <rule id="110123" level="7">
+    <program_name>mailcow/mailcowdockerized-watchdog-mailcow-1</program_name>
+    <match>Dovecot health level:</match>
+    <match>100%</match>
+    <description>Mailcow - Dovecot: Health degraded - Investigation needed</description>
+    <group>mailcow,health,degraded,</group>
+  </rule>
+
+  <!-- ============================================= -->
+  <!-- SOGO HEALTH AND ACTIVITY RULES                -->
+  <!-- ============================================= -->
+
+  <rule id="110130" level="1">
+    <program_name>mailcow/mailcowdockerized-watchdog-mailcow-1</program_name>
+    <match>SOGo health level: 100%</match>
+    <description>Mailcow - SOGo: Health OK</description>
+    <group>mailcow,health,sogo,</group>
+  </rule>
+
+  <rule id="110131" level="7">
+    <program_name>mailcow/mailcowdockerized-watchdog-mailcow-1</program_name>
+    <match>SOGo health level:</match>
+    <match>100%</match>
+    <description>Mailcow - SOGo: Health degraded - Investigation needed</description>
+    <group>mailcow,health,degraded,sogo,</group>
+  </rule>
+
+  <!-- ============================================= -->
+  <!-- NGINX/API ACCESS RULES                        -->
+  <!-- ============================================= -->
+
+  <rule id="110140" level="2">
+    <program_name>mailcow/mailcowdockerized-nginx-mailcow-1</program_name>
+    <match>GET /api/|POST /api/</match>
+    <description>Mailcow - API: Access detected</description>
+    <group>mailcow,api,</group>
+  </rule>
+
+  <rule id="110141" level="3">
+    <program_name>mailcow/mailcowdockerized-nginx-mailcow-1</program_name>
+    <match> 401 | 403</match>
+    <description>Mailcow - API: Authentication failure</description>
+    <group>authentication_failed,mailcow,api,</group>
+  </rule>
+
+  <!-- ============================================= -->
+  <!-- PHP-FPM ACTIVITY RULES                        -->
+  <!-- ============================================= -->
+
+  <rule id="110150" level="2">
+    <program_name>mailcow/mailcowdockerized-php-fpm-mailcow-1</program_name>
+    <match>GET /json_api.php|HEAD /forwardinghosts.php</match>
+    <description>Mailcow - PHP-FPM: API endpoint accessed</description>
+    <group>mailcow,api,php,</group>
+  </rule>
+
+  <!-- ============================================= -->
+  <!-- PHISHING DETECTION RULES                      -->
+  <!-- ============================================= -->
+
+  <rule id="110200" level="8">
+    <program_name>mailcow/mailcowdockerized-postfix-mailcow-1</program_name>
+    <match>rnicrosoft|goog1e|paypa1|arnazon|faceb00k|micr0soft</match>
+    <description>Mailcow - Phishing: Suspicious sender domain (typosquatting attempt)</description>
+    <group>mailcow,phishing,suspicious,</group>
+  </rule>
+
+  <rule id="110201" level="7">
+    <program_name>mailcow/mailcowdockerized-postfix-mailcow-1</program_name>
+    <match>verify your account|update your payment|password expired|security alert|unusual activity|confirm your identity</match>
+    <description>Mailcow - Phishing: Common phishing keywords detected in email</description>
+    <group>mailcow,phishing,keywords,</group>
+  </rule>
+
+  <rule id="110202" level="6">
+    <program_name>mailcow/mailcowdockerized-postfix-mailcow-1</program_name>
+    <match>immediate action|within 24 hours|account will be closed|limited time|act now|verify immediately</match>
+    <description>Mailcow - Phishing: Urgency tactics detected in email</description>
+    <group>mailcow,phishing,urgency,</group>
+  </rule>
+
+  <rule id="110203" level="9">
+    <program_name>mailcow/mailcowdockerized-postfix-mailcow-1</program_name>
+    <match>.exe|.scr|.bat|.cmd|.vbs|.js|.jar|.docm|.xlsm|.pptm</match>
+    <description>Mailcow - Phishing: Suspicious attachment type detected</description>
+    <group>mailcow,phishing,attachments,</group>
+  </rule>
+
+  <rule id="110205" level="7">
+    <program_name>mailcow/mailcowdockerized-postfix-mailcow-1</program_name>
+    <match>bit.ly|tinyurl|goo.gl|ow.ly|is.gd|buff.ly|short.link</match>
+    <description>Mailcow - Phishing: URL shortener detected (potential phishing redirect)</description>
+    <group>mailcow,phishing,url_shortener,</group>
+  </rule>
+
+  <rule id="110207" level="9">
+    <program_name>mailcow/mailcowdockerized-postfix-mailcow-1</program_name>
+    <match>dmarc=fail|spf=fail|dkim=fail</match>
+    <description>Mailcow - Phishing: Email authentication failed (DMARC/SPF/DKIM) - Possible spoofing</description>
+    <group>mailcow,phishing,authentication,</group>
+  </rule>
+
+  <!-- ============================================= -->
+  <!-- RSPAMD SPAM/PHISHING DETECTION                -->
+  <!-- ============================================= -->
+
+  <rule id="110220" level="5">
+    <program_name>mailcow/mailcowdockerized-rspamd-mailcow-1</program_name>
+    <match>phishing</match>
+    <description>Mailcow - Rspamd: Phishing score detected - Suspicious email</description>
+    <group>mailcow,phishing,rspamd,</group>
+  </rule>
+
+  <rule id="110221" level="7">
+    <program_name>mailcow/mailcowdockerized-rspamd-mailcow-1</program_name>
+    <match>high confidence phishing|phishing URL</match>
+    <description>Mailcow - Rspamd: HIGH confidence phishing detected - Immediate action required</description>
+    <group>mailcow,phishing,rspamd,critical,</group>
+  </rule>
+
+  <rule id="110222" level="6">
+    <program_name>mailcow/mailcowdockerized-rspamd-mailcow-1</program_name>
+    <match>spam score</match>
+    <description>Mailcow - Rspamd: High spam score detected (possible phishing)</description>
+    <group>mailcow,phishing,rspamd,</group>
+  </rule>
+
+  <!-- ============================================= -->
+  <!-- COMPROMISED ACCOUNT DETECTION                 -->
+  <!-- ============================================= -->
+
+  <!-- Multiple logins from same IP -->
+  <rule id="110230" level="8" frequency="3" timeframe="60">
+    <if_matched_sid>110100,110101,110102</if_matched_sid>
+    <same_source_ip />
+    <description>Mailcow - Security: Multiple authentication attempts from same IP - Possible brute force</description>
+    <group>mailcow,authentication,compromise,</group>
+  </rule>
+
+  <!-- High volume of outbound emails -->
+  <rule id="110231" level="10" frequency="20" timeframe="300">
+    <if_matched_group>mailcow</if_matched_group>
+    <match>status=sent</match>
+    <same_source_ip />
+    <description>Mailcow - Security: High volume of outbound emails - Possible compromised account sending spam</description>
+    <group>mailcow,compromise,spam,</group>
+  </rule>
+
+</group>
+
+
