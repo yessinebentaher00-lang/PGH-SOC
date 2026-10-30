@@ -263,4 +263,30 @@ When a suspicious command has beed executed, Wazuh triggers an Active Response t
 
 # Dashboarding
 
+## Failed authentication attempt scenarios' dashboard
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1702e2a111d7727ace529cbe0fbc0bd23b8d9cfd/assets/BB2.png)
+
+## Phishing attack attempt scenario dashboard
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1702e2a111d7727ace529cbe0fbc0bd23b8d9cfd/assets/BB.png)
+
+## suspicious executions dashboard
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1702e2a111d7727ace529cbe0fbc0bd23b8d9cfd/assets/BB3.png )
+
+**this one in important to detemine whether an unauthorized actor commited privelege escalation attack**
+
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1702e2a111d7727ace529cbe0fbc0bd23b8d9cfd/assets/BB4.png)
+
+**this entails the major commands that have been executed**
+
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1702e2a111d7727ace529cbe0fbc0bd23b8d9cfd/assets/BB5.png)
+
+**this part is focused on deeper investigation over the source and the victim details**
+
+## AD Enumeration attack dashboard
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1702e2a111d7727ace529cbe0fbc0bd23b8d9cfd/assets/BB6.png)
+
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1702e2a111d7727ace529cbe0fbc0bd23b8d9cfd/assets/Detection2.png)
+
+
+
 # Important
