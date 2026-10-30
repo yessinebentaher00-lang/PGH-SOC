@@ -104,9 +104,12 @@
 
 
 ## Suricata
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/7a8c53b12d3fc6b32650bbd5454ffd57ac599645/assets/AOO.png)
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/7a8c53b12d3fc6b32650bbd5454ffd57ac599645/assets/AOOUI.png)
 
 
 ## Routing (OSPF)
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/7a8c53b12d3fc6b32650bbd5454ffd57ac599645/assets/AAOOTA.png)
 
 
 ## Monitoring (ntopNG)
