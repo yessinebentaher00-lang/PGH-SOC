@@ -5,7 +5,7 @@ Here we managed to prepare our logical and physical work concept:
 
 # Physical architechture
 ## Overview
-[!image alt]()
+[!image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/9a3b55a04d703ccbe550bbd2cea578cbd30102ac/assets/C1.png)
 ## Physical requirements
 
 # Logical architechture
