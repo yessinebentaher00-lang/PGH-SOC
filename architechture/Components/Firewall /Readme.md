@@ -5,7 +5,7 @@
 ![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1adfb068e2f68779203902340b4413b832465236/assets/A1.png)
 
 ## Dashboarding
-![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1adfb068e2f68779203902340b4413b832465236/assets/A11.png)
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1adfb068e2f68779203902340b4413b832465236/assets/A3.png)
 
 
 ## Rules
@@ -91,14 +91,29 @@
 
 
 ## Routes
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1adfb068e2f68779203902340b4413b832465236/assets/A13.png)
 
 
 ## Redunduncy and failover
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1adfb068e2f68779203902340b4413b832465236/assets/A16.png)
 
 ![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1adfb068e2f68779203902340b4413b832465236/assets/A11.png)
 
+## Nat
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1adfb068e2f68779203902340b4413b832465236/assets/A6.png)
+
+
 ## Suricata
+
 
 ## Routing (OSPF)
 
+
 ## Monitoring (ntopNG)
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1adfb068e2f68779203902340b4413b832465236/assets/A20.png)
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1adfb068e2f68779203902340b4413b832465236/assets/A21.png)
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1adfb068e2f68779203902340b4413b832465236/assets/A22.png)
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1adfb068e2f68779203902340b4413b832465236/assets/A23.png)
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1adfb068e2f68779203902340b4413b832465236/assets/A24.png)
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1adfb068e2f68779203902340b4413b832465236/assets/A25.png)
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1adfb068e2f68779203902340b4413b832465236/assets/A26.png)
