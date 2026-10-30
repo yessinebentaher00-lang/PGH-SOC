@@ -1,7 +1,25 @@
-In this part, we shall discover the main rules that were probably necessary to englobe most of the realistic cases faced in each scenario:
+# PGHSOC SIEM global configuration
+this project dealt with specefic attack scenarios that's why we tried to be selective in our rules and internal additional configuration you shall follow this guide if you are interested to deal with scenarios alike. \
+Generally we tried to englobe rules that are related to phishing attacks, different suspicious possibilities related failed authentication, Privilege escalation and malicious executions and also AD enumeration attacks. \
+In this guide you might be capable to set up you SIEM environment and manage the detection and the monitoring of your alerts also this part is firmly attached to Services configurations especially the mailing and Web server part as well as theHive and n8n for integration. \
+Those are the main big titles that you shall explore in details: 
 
-[Go to Rules](#rules)
+1. [ Installation and necessery configurations](#Installation-and-necessery-configurations) 
+2. [ Rules configuration](#Rules-configuration) 
+   * [ PGHConnect authentication issues](#PGHConnect-authentication-issues) 
+   * [ Phishing attack attempt detection](#Phishing-attack-attempt-detection) 
+   * [ Suspicious Command Detection](#Suspicious-Command-Detection) 
+   * [ Active Directory Enumeration](#Active-Directory-Enumeration) 
+3. [ Integrations](#Integrations) 
+   * [ TheHive](#TheHive-integration) 
+   * [ N8N](#N8N-integration) 
+   * [ Velociraptor](#Velociraptor-integration) 
+4. [ Dashboarding and monitoring](#Dashboarding-and-monitoring) 
+5. [ Important](#Important) 
 
+# Installation and necessery configurations
+
+# Rules configuration
 
 ## PGHConnect authentication issues:
 
@@ -40,8 +58,6 @@ In this part, we shall discover the main rules that were probably necessary to e
 **In addition to the essential detection rules, I have also prepared a set of additional mailing rules based on normal and habitual mail transactions. These rules are still in progress and are not critical for tracking malicious activities; they mainly cover general mailing server operations and routine activities.**
 
 ## Additional Mailcow Rules — Health, Authentication, and Compromise Detection:
-
-# rules
 
 | **Rule ID** | **Name** | **Level** | **Severity** | **Utility** |
 |---------|------|-------|----------|---------|
@@ -83,12 +99,6 @@ In this part, we shall discover the main rules that were probably necessary to e
 |---------|------|-------|----------|---------|
 | 92600 | Python Script Executed | 7 | High | Python script execution detected (overridden) |
 
-## Linux Audit — AD Attack Tools:
-
-| **Rule ID** | **Name** | **Level** | **Severity** | **Utility** |
-|---------|------|-------|----------|---------|
-| 112001 | BloodHound AD Discovery | 10 | High | BloodHound tool executed (AD discovery) |
-| 112002 | Kerberoasting/DCSync Tool | 12 | Critical | Kerberoasting or DCSync tool detected |
 
 ## Active Directory Enumeration:
 
@@ -97,6 +107,13 @@ In this part, we shall discover the main rules that were probably necessary to e
 | 110400 | AD Enumeration Base Rule | 0 | Basic | Base rule for AD enumeration events |
 | 110401 | Local Group Enumeration | 8 | Medium | Event ID 4799 — group enumeration detected |
 | 110402 | Administrators Group Enumerated | 12 | Critical | Critical group enumeration targeting Admins |
+
+## Linux Audit — AD Attack Tools:
+
+| **Rule ID** | **Name** | **Level** | **Severity** | **Utility** |
+|---------|------|-------|----------|---------|
+| 112001 | BloodHound AD Discovery | 10 | High | BloodHound tool executed (AD discovery) |
+| 112002 | Kerberoasting/DCSync Tool | 12 | Critical | Kerberoasting or DCSync tool detected |
 
 ## Active Directory Kerberos & Authentication:
 
