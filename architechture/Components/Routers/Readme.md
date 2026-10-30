@@ -3,12 +3,13 @@
 
 This section documents the configuration of the **Cisco CSR1000V** edge router that connects the PGHSOC infrastructure to the internet (WAN) and routes traffic between the internal VLANs.
 
-**Platform:** Cisco CSR1000V
-**Serial (UDI):** `9T8JCAX9YL8`
-**Role:** Edge router — NAT, inter-VLAN routing, HSRP
-**WAN interface:** `GigabitEthernet1` (DHCP from ISP)
+**Platform:** Cisco CSR1000V\
+**Serial (UDI):** `9T8JCAX9YL8`\
+**Role:** Edge router — NAT, inter-VLAN routing, HSRP\
+**WAN interface:** `GigabitEthernet1` (DHCP from ISP)\
 **LAN interfaces:** `Gi2.60`, `Gi3`, `Gi4.80` (802.1Q sub-interfaces)
 
+🔻Just to mention in the start that both routers are nearly representing the same configuration just the ip changes and the HSRP configuration may differ in order to establish redunduncy between the two routers
 ---
 
 ## 1. Global Settings
@@ -149,5 +150,3 @@ ip route 192.168.1.3 255.255.255.255 192.168.1.1 — Host route for 192.168.1.3 
 
 
 
-
-crypto key generate rsa modulus 2048
