@@ -28,6 +28,27 @@ this architechture is composed of 2 Routers and 5 switches, 2 FWs and 10 labs fo
 # Logical architechture
 ## Overview
 ![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/9a3b55a04d703ccbe550bbd2cea578cbd30102ac/assets/C2.png)
+
+### Monitoring phase
+
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/2970ae2f4e9a957c86d8ba7ceb1edd227f411580/assets/C5.png)
+
+different events and system health logs are tracked by certain monitoring systems for traceability and supervision
+
+### Collection phase
+
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/2970ae2f4e9a957c86d8ba7ceb1edd227f411580/assets/C6.png)
+
+only necessary alerts are needed to get tracked by our SIEM system to get later rational study. those alerts are tracked based on defined rules
+
+### Analysis phase
+
 ![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/9a3b55a04d703ccbe550bbd2cea578cbd30102ac/assets/C3.png)
+
+the analysis process starts with **Direct alert handling with IOCs extraction and enrichment then we shall proceed with collecting more details about the incident (Pre and post activities details collection) in order to prepare by the end our final global analysis
+### Response phase
+
 ![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/9a3b55a04d703ccbe550bbd2cea578cbd30102ac/assets/C4.png)
 
+Based on the final report generated later actions should get involved (triage, deeper investigation, containment, isolation ....).
+this part might be not the last part for certain scenarios. 
