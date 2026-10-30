@@ -19,7 +19,9 @@ Those are the main big titles that you shall explore in details:
 
 # Installation and necessery configurations
 
-![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/75a0e1bd9321e82e0cbe400c561866ca3dd23583/assets/Wazuh.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/yessinebentaher00-lang/PGH-SOC/75a0e1bd9321e82e0cbe400c561866ca3dd23583/assets/Wazuh.png" alt="Wazuh Logo" width="250">
+</p>
 
 This section covers the installation of the Wazuh SIEM stack (Indexer, Manager, Dashboard) on a single server. The commands below assume **Ubuntu 20.04/22.04 or Debian 11+** with root or sudo privileges.
 
