@@ -19,6 +19,36 @@ Those are the main big titles that you shall explore in details:
 
 # Installation and necessery configurations
 
+This section covers the installation of the Wazuh SIEM stack (Indexer, Manager, Dashboard) on a single server. The commands below assume **Ubuntu 20.04/22.04 or Debian 11+** with root or sudo privileges.
+
+## 1. System update and prerequisites
+
+Update the system and install the required packages:
+
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install curl apt-transport-https lsb-release gnupg2 -y
+```
+## 2. Download and run the Wazuh installation assistant
+The Quickstart script installs the Indexer, Manager, and Dashboard automatically, and generates the required certificates.
+
+```bash
+curl -sO https://packages.wazuh.com/4.14/wazuh-install.sh
+sudo bash ./wazuh-install.sh -a
+```
+## 3. Retrieve your credentials
+At the end of the installation, the script prints: The Dashboard URL (usually https://<your-server-ip>)\
+
+⚠️ Save the admin password immediately. You will need it to log in to the dashboard.
+
+## 4. Access the dashboard
+Open your browser and navigate to:
+```text
+https://<your-server-ip>
+```
+Log in with the username admin and the password printed in the previous step.
+
+❗You can access the [Wazuh official site](https://documentation.wazuh.com/current/installation-guide/index.html) for more information and setup.
 # Rules configuration
 
 ## PGHConnect authentication issues:
