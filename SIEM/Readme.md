@@ -14,7 +14,7 @@ Those are the main big titles that you shall explore in details:
    * [ TheHive](#TheHive-integration) 
    * [ N8N](#N8N-integration) 
    * [ Velociraptor](#Velociraptor-integration) 
-4. [ Dashboarding and monitoring](#Dashboarding-and-monitoring) 
+4. [ Dashboarding and monitoring](#Dashboarding) 
 5. [ Important](#Important) 
 
 # Installation and necessery configurations
