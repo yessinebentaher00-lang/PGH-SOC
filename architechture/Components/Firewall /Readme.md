@@ -1,8 +1,11 @@
 # Firewall Configuration
 
+## Interfaces
+
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1adfb068e2f68779203902340b4413b832465236/assets/A1.png)
 
 ## Dashboarding
-![image alt]()
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1adfb068e2f68779203902340b4413b832465236/assets/A11.png)
 
 
 ## Rules
@@ -92,6 +95,7 @@
 
 ## Redunduncy and failover
 
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/1adfb068e2f68779203902340b4413b832465236/assets/A11.png)
 
 ## Suricata
 
