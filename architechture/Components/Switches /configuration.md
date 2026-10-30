@@ -141,7 +141,7 @@ ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 ```
 
 ## For switch 5
-
+```text
 !
 ip name-server 8.8.8.8
 ip cef
@@ -239,7 +239,7 @@ ip route 192.168.10.0 255.255.255.0 192.168.1.2
 ip route 192.168.20.0 255.255.255.0 192.168.1.2
 ip route 192.168.77.0 255.255.255.0 192.168.1.2
 ip route 192.168.99.0 255.255.255.0 192.168.1.2
-
+```
 ## For switch 2
 
 ``` text
