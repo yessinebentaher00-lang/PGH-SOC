@@ -10,12 +10,12 @@ The goal of this repository is to provide a reusable blueprint for building a ce
 
 ## 🚀 Getting Started
 
-* architechture planning and configuration
-* Services setup
-* Monitoring and dashboarding
-* SIEM configuration
-* SOAR deployment
-* Automation and orchestration
+* [architechture planning and configuration](https://the-link-url.com)
+* [Services setup]
+* [Monitoring and dashboarding]
+* [SIEM configuration]
+* [SOAR deployment]
+* [Automation and orchestration]
 
 ---
 
