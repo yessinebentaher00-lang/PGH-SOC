@@ -144,7 +144,7 @@ sudo systemctl restart wazuh-agent
 ````
 
 ## Mailing Server Details
-[!image alt]()
+[!image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/b76805815ce8ad45c20bad27ca34aad78a2af222/assets/F2.png)
 
 those are the main Mailcow features:
 
@@ -158,4 +158,6 @@ those are the main Mailcow features:
 * **ACME:** keeps your connections private and safe \
 
 Dealing with Mailcow didn't differ that much from the same way you react with internet-hosted mail services in contrast you can see and verify the mail service performance and health as additional feature, and you can get notifications over the client problems encountered.
-[!image alt]()
+[!image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/b76805815ce8ad45c20bad27ca34aad78a2af222/assets/F1.png)
+
+** the commands showing in the important part are very helpfull in order to get logs from special actors what you just need to add the 
