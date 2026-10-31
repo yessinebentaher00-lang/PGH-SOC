@@ -2,7 +2,8 @@
 
 Welcome to the **PGH-SOC** repository. This project documents the design, implementation, and validation of a complete, open-source Security Operations Center (SOC) environment built for **Poulina Group Holding (PGH)**. 
 
-It was developed as part of a final-year engineering project at **ESPRIT**, specializing in Cybersecurity – NIDS (Network Infrastructure & Data Security).
+It was developed as part of a final-year engineering project at **ESPRIT**, specializing in Cybersecurity 
+
 
 The goal of this repository is to provide a reusable blueprint for building a centralized, automated, and intelligence-driven SOC using only open-source tools. It covers everything from network segmentation and detection rules to SOAR automation and threat intelligence integration.
 
