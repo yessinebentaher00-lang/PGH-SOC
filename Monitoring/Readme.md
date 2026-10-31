@@ -9,7 +9,12 @@ Centralized dashboarding are often required to visualize systems health and trac
 
 ## Pfsense (ntopNG)
 
-within pfsense the firewall manager is able to check networking issues about each area.
+within pfsense the firewall manager is able to check networking issues about each area, all the existing endpoints informations and health as well as details about malicious packets and used protocols.
+
+In a unified dashboard general informations about transactions might be used as a key for deeper investigations for certain threat scenarios.
 
 ## Zabbix
+
+
+
 ## Grafana
