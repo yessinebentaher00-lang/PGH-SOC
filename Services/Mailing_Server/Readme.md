@@ -133,10 +133,12 @@ Add the following block inside <ossec_config> to monitor Mailcow container logs:
 ````
 Alternatively, if you have configured Mailcow to write logs to a specific file, use that path instead .
 
-## Mailing Server Details
-
 Restart the Wazuh agent:
 
 ````bash
 sudo systemctl restart wazuh-agent
 ````
+
+## Mailing Server Details
+
+
