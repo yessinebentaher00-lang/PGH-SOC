@@ -1,5 +1,9 @@
 # Mailing Server Details and Configuration
 
+Making a whole secure mailing system is possible but time consuming and a big struggle. 
+**But thankfully, Mailcow existed to handle several main secure mailing services** in a simple centralized and interactive way. you can benefit from sending messages reading the spam files revising sent and not sent mails, mails can be pictures, texts or even files.
+
+
 * [Mail Server Installation and Configuration](#Mail-Server-Installation-and-Configuration)
 
 
@@ -140,5 +144,18 @@ sudo systemctl restart wazuh-agent
 ````
 
 ## Mailing Server Details
+[!image alt]()
 
+those are the main Mailcow features:
 
+* **Postfix:** delivers and sends out the mail \
+* **Dovecot:** stores mails until getting exposed \
+* **Rspamd:** throws away and track spam and viruses \
+* **SOGo:** the website you access to interact with the mail service itself \
+* **Unbound:** finds the right addresses and maps and resolves domain names on the internet \
+* **MariaDB:** holds and stores all account names and passwords \
+* **Redis:** speeds up the security processes (certificates handling during external authentication) \
+* **ACME:** keeps your connections private and safe \
+
+Dealing with Mailcow didn't differ that much from the same way you react with internet-hosted mail services in contrast you can see and verify the mail service performance and health as additional feature, and you can get notifications over the client problems encountered.
+[!image alt]()
