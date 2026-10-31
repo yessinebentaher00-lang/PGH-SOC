@@ -1,3 +1,4 @@
+````xml
 <!--
   Wazuh - Agent - Default configuration for ubuntu 24.04
   More info at: https://documentation.wazuh.com
@@ -187,3 +188,4 @@
     <log_format>plain</log_format>
   </logging>
 </ossec_config>
+````
