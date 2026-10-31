@@ -1,1 +1,19 @@
+cat > /usr/local/bin/sync-mailcow-logs.sh << 'EOF'
+#!/bin/bash
+while true; do
+    docker cp mailcowdockerized-dovecot-mailcow-1:/var/log/mailcow_emails.jsonl /var/log/mailcow_emails.jsonl 2>/dev/null
+    sleep 2
+done
+EOF
 
+chmod +x /usr/local/bin/sync-mailcow-logs.sh
+
+# Run in background
+nohup /usr/local/bin/sync-mailcow-logs.sh &
+
+# Check if running
+ps aux | grep sync-mailcow-logs
+
+
+# Directly tail the container logs from host
+docker exec mailcowdockerized-dovecot-mailcow-1 tail -f /var/log/mailcow_emails.jsonl > /var/log/mailcow_emails.jsonl &
