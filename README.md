@@ -10,12 +10,12 @@ The goal of this repository is to provide a reusable blueprint for building a ce
 
 ## 🚀 Getting Started
 
-* [architechture planning and configuration](https://the-link-url.com)
-* [Services setup]
-* [Monitoring and dashboarding]
-* [SIEM configuration]
-* [SOAR deployment]
-* [Automation and orchestration]
+* [architechture planning and configuration](https://github.com/yessinebentaher00-lang/PGH-SOC/tree/d89cb75b506ac192eb25c6ceedcd658711c5f348/architechture)
+* [Services setup](https://github.com/yessinebentaher00-lang/PGH-SOC/tree/d89cb75b506ac192eb25c6ceedcd658711c5f348/Services)
+* [Monitoring and dashboarding](https://github.com/yessinebentaher00-lang/PGH-SOC/tree/d89cb75b506ac192eb25c6ceedcd658711c5f348/Monitoring)
+* [SIEM configuration](https://github.com/yessinebentaher00-lang/PGH-SOC/tree/d89cb75b506ac192eb25c6ceedcd658711c5f348/SIEM)
+* [SOAR deployment](https://github.com/yessinebentaher00-lang/PGH-SOC/tree/d89cb75b506ac192eb25c6ceedcd658711c5f348/SOAR)
+* [Automation and orchestration](https://github.com/yessinebentaher00-lang/PGH-SOC/tree/d89cb75b506ac192eb25c6ceedcd658711c5f348/Automation)
 
 ---
 
