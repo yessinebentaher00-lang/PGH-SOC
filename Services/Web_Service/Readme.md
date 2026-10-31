@@ -121,6 +121,23 @@ sudo tail -f /var/ossec/logs/alerts/alerts.json | grep prsociety
 
 ## PGHConnect interfafces and functionalities
 
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/307a3894c7e3c45b7e0e4c3a3abff52084b4a013/assets/D2.png)
+
+All the workers have the right to access the authentication pannel.
+in case ofsuccessfull login, the user might access to the workspace ssimulated UI in which he might consult later news, his details, schedules and planning.
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/307a3894c7e3c45b7e0e4c3a3abff52084b4a013/assets/D3.png)
+
+Thus and most important, only the SOC members have the right to access the PGHSOC platform and this done from the start by the system from the authentication till the beginning
+
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/307a3894c7e3c45b7e0e4c3a3abff52084b4a013/assets/D4.png)
+
+
+
 ## PGHSoc features and integrated solutions
 
- 
+![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/307a3894c7e3c45b7e0e4c3a3abff52084b4a013/assets/D1.png)
+
+The administrator have fully access to all solutions thus based on the ID code inserted analysts have the access to Wazuh velociraptor and the SOAR solutions (TheHive cortex and MISP) and the System supervisors and administrators have access to the rest monitoring solutions 
+ ![image alt](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/307a3894c7e3c45b7e0e4c3a3abff52084b4a013/assets/D5.png)
+
+! our web server is ordered under a role-based management in which each individual has the right to fullfill certain legal options under the priviliges he got and all his actions are being tracked down and suspicious ones will get instantly monitored and treated (talking especially about malicious authentication insertions).
