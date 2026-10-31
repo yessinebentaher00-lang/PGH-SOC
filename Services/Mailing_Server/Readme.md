@@ -1,9 +1,9 @@
 # Mailing Server Details and Configuration
 
-*[Mail Server Installation and Configuration](#Mail-Server-Installation-and-Configuration)
+* [Mail Server Installation and Configuration](#Mail-Server-Installation-and-Configuration)
 
 
-*[Mailing Server Details](Mailing-Server-Details)
+* [Mailing Server Details](Mailing-Server-Details)
 
 ## Mail Server Installation and Configuration 
 This section documents the installation and configuration of the Mailcow mail server used to simulate email traffic, generate phishing detection logs, and provide a realistic target for security monitoring within the SOC environment.
