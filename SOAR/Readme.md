@@ -91,3 +91,4 @@ This orchestration pattern is common in open-source SOC builds: n8n acts as the 
 ---
 
 
+[<- back](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/9c571e9a4ed0a8f49e23ac03fcd208727beffa7d/README.md)
