@@ -19,3 +19,5 @@ we tend to <ens>limit</ens> our mitigation proccess to deal only on detecting th
 
 **3 - Decision :** Baased on the incident threashold the workflow tries to follow the appropriate mitigations and in general cases it would be instant blocking while enumeration is considered as a threat action from the start
 
+
+[← Back to the Automation Welcome Page](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/8bfe17e4f136feb5ce34d7630f47ef9797bf5d8b/Automation/Readme.md)
