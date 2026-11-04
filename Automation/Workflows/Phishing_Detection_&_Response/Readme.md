@@ -44,3 +44,5 @@ Based on the analysis from both agents, a report is generated. The response is d
 | **MEDIUM** | Contain the sender VM if internal. For external breaches, block the IP from accessing specific areas like the LAN (except the target) and DMZ (except the mailing server) to observe subsequent moves. |
 | **HIGH** | Immediately contain the victim VM as a precautionary measure. |
 | **CRITICAL** | Immediately block the victim VM and place it under maintenance. |
+
+[← Back to the Automation Welcome Page](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/8bfe17e4f136feb5ce34d7630f47ef9797bf5d8b/Automation/Readme.md)
