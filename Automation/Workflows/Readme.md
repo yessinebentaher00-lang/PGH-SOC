@@ -3,7 +3,6 @@
 </p>
 
 <p align="center">
-  [return pleaze](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/8bfe17e4f136feb5ce34d7630f47ef9797bf5d8b/Automation/Readme.md)
+  <a href="https://github.com/yessinebentaher00-lang/PGH-SOC/blob/8bfe17e4f136feb5ce34d7630f47ef9797bf5d8b/Automation/Readme.md">← Return</a>
 </p>
-
 
