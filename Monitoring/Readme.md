@@ -33,7 +33,10 @@ move to firewall section under the architechture folder for more details about f
 **!might look optional but it does recovered wwhat it was limited for me to encover by the use of Grafana; connectivity, password alteraction and files modification, it does as well represent advanced features over traffic details (as do ntopng do) unless i limited the access to Zabbix only by system administrators only not firewall manager**
 
 
-## Wazuh
+## [Wazuh](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/9c571e9a4ed0a8f49e23ac03fcd208727beffa7d/SIEM)
 
 it is generally used as a SIEM but we have configured dashboards for alerts monitoring and tracking 
 you can check it by accessing the SIEM part in our project
+
+
+[← Back](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/9c571e9a4ed0a8f49e23ac03fcd208727beffa7d/README.md)
