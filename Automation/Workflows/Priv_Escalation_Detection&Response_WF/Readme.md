@@ -39,3 +39,4 @@ the analysis core starts with analysing superficially the alert detected and all
 Same as the phishing response phasee.(copy-paste :p)
 
 
+[← Back to the Automation Welcome Page](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/8bfe17e4f136feb5ce34d7630f47ef9797bf5d8b/Automation/Readme.md)
