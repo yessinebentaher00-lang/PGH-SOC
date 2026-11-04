@@ -294,3 +294,8 @@ When a suspicious command has beed executed, Wazuh triggers an Active Response t
 
 
 # Important
+(untill we remember we will add but in case you are facing problems contact yessine. you could help us remember fast :p)
+
+
+
+[<- back](https://github.com/yessinebentaher00-lang/PGH-SOC/blob/9c571e9a4ed0a8f49e23ac03fcd208727beffa7d/README.md)
