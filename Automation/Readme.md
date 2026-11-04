@@ -10,6 +10,7 @@
 
 
 
+<p align="center">
 
 **[1. Failed Authentication Bypass Instant Response](https://github.com/yessinebentaher00-lang/PGH-SOC/tree/d26b03d4f1229800f63ae493a17704c9943eee57/Automation/Workflows/Wrong_Credential_Insertion)**
 
@@ -19,6 +20,7 @@
 
 **[4. AD Enumeration Attack Mitigation Process](https://github.com/yessinebentaher00-lang/PGH-SOC/tree/d26b03d4f1229800f63ae493a17704c9943eee57/Automation/Workflows/AD_Enum_ResponseWF)**
 
+</p>
 
 
 
