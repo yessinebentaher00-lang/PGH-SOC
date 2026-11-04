@@ -1,0 +1,10 @@
+#!/bin/sh
+
+WAZUH_PATH="/var/ossec"
+WPYTHON_BIN="${WAZUH_PATH}/framework/python/bin/python3"
+PYTHON_SCRIPT="${WAZUH_PATH}/integrations/custom-n8n.py"
+
+${WPYTHON_BIN} ${PYTHON_SCRIPT} $@
+
+
+
